@@ -1,0 +1,126 @@
+# Oddstone Marketing Website: AI Development Guidelines
+
+This document provides the rules and guidelines for developing the Oddstone marketing website. Follow these instructions to ensure the final product aligns with the project's goals and technical requirements.
+
+## 1. Project Overview
+
+The goal is to build a modern, clean, and friendly marketing website for Oddstone. The site's tone should be that of a partnership, not a sales pitch. It must be performant, fully responsive, and optimized for search engines from day one.
+
+## 2. Tech Stack
+
+- **Framework**: Next.js (App Router)
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion & Anime JS
+- **3D Graphics**: Three.js (for subtle, performant visual enhancements)
+- **Deployment**: Vercel
+
+## 3. Design System & UX
+
+- **Overall Style**: Clean, modern, and minimalistic with vibrant, warm accents.
+- **Color Palette**:
+  - **Accent Colors**: Use a primary accent from this list: electric blue. The color should be vibrant but not jarring.
+  - **Base Colors**: Use neutral tones like white and light gray for backgrounds to maintain a clean aesthetic.
+- **Typography**:
+  - **Font Family**: Use a rounded sans-serif font. Preferred font is **Satoshi**.
+  - **Scale**: Maintain a consistent and clear typographic hierarchy for headings (h1, h2, h3) and body text.
+- **Buttons & CTAs**:
+  - **Style**: Design buttons to be clearly clickable with clean, defined edges. Inspired from apple ecosystem.
+  - **Hover Effects**: Implement subtle hover effects using Framer Motion (e.g., slight scale, color change).
+  - **Primary CTAs**: "Let's Talk" and "Free Audit" should be prominent and scroll smoothly to the contact form.
+- **Interactivity**:
+  - Animate page transitions, scroll events, and micro-interactions with Framer Motion.
+  - Use Three.js for tasteful background elements or interactive visuals that do not degrade performance.
+
+## 4. Site Structure & Content
+
+The website will have the following pages and global elements.
+
+### 4.1. Global Elements
+
+- **Header**:
+  - **Behavior**: Sticky to the top on scroll.
+  - **Navigation Links**: Home, About, Services, How We Work, Testimonials, Contact.
+  - **CTA Button**: "Let's Talk" that smoothly scrolls to the Contact section/page.
+  - **Mobile**: A fully responsive, collapsible hamburger menu.
+- **Footer**:
+  - Company Logo.
+  - Navigation links.
+  - Social media icons/links (LinkedIn, Instagram, etc.).
+  - Email and contact information.
+  - Links to `Privacy Policy` and `Terms of Service` pages.
+  - Tagline: "Built by Oddstone — Marketing with a Heart".
+
+### 4.2. Homepage (`/`)
+
+1.  **Hero Section**:
+    - **Headline**: "Marketing that feels like a partnership — not a pitch."
+    - **Subtext**: "We work with your budget and goals to deliver results, not fluff."
+    - **CTAs**: [Let's Talk] and [Free Audit].
+2.  **What We Do Section**:
+    - Use icon-and-text cards for: SEO, PPC, Social Media, and Automation.
+    - Each card should scroll to the relevant part of the Services page.
+3.  **Why Choose Oddstone Section**:
+    - Use cards to highlight: Human-first, Transparent Pricing, Tailored Plans, No Nonsense.
+4.  **Featured Testimonials**:
+    - Display 2-3 quotes in a carousel or static grid.
+5.  **Let's Talk CTA Section**:
+    - **Text**: "Let's talk goals, budget, and everything in between."
+    - **CTA**: [Contact Us] (scrolls to contact).
+
+### 4.3. About Page (`/about`)
+
+1.  **Who We Are**:
+    - **Mission**: "To make performance marketing accessible, transparent, and human again."
+    - **Vision**: "To be the friendliest, most results-driven agency you've ever worked with."
+2.  **How We're Different**:
+    - A simple comparison against traditional agencies, focusing on: empathy, clarity, trust, and collaboration.
+3.  **CTA**: [Let's Work Together] (links to the Contact page).
+
+### 4.4. Services Page (`/services`)
+
+- **Format**: A single, scrollable page detailing all services.
+- **Intro**: "We don't sell packages. We build plans around your goals, budget, and what makes sense for your growth."
+- **Service Blocks**:
+  - **SEO**: "Get found organically. Technical SEO, content strategy, and site health tailored for growth." CTA: [Get My SEO Audit]
+  - **PPC**: "Instant visibility through smart, performance-driven ad campaigns." CTA: [Start My PPC Plan]
+  - **Social Media**: "Engaging content and ads that connect your brand with your people." CTA: [Boost My Social]
+  - **Marketing Automation**: "Automated flows and funnels that nurture leads without losing the human touch." CTA: [Automate My Marketing]
+  - All CTAs link to the Contact page.
+- **Final CTA**: "Want help choosing the right mix?" with a [Let's Talk] button.
+
+### 4.5. How We Work Page (`/how-we-work`)
+
+1.  **Our Process**: A 3-step visual (timeline or graphic): Discovery → Strategy → Execution.
+2.  **Your Role**: Explain client collaboration and our deliverables (results, reports).
+3.  **CTA**: [Let's Build Something Together] (links to the Contact page).
+
+### 4.6. Testimonials Page (`/testimonials`)
+
+- A grid or carousel of client feedback. Include logos where possible.
+- **CTA**: [Join Our Clients] (links to the Contact page).
+
+### 4.7. Contact Page (`/contact`)
+
+- **Form Fields**: Name, Email, Phone (optional), Message (placeholder: "Tell us about your business, goals, and budget range.").
+- **Submit Button**: "Send Message".
+- **Confirmation**: "Thanks for reaching out! We'll be in touch within 24 hours."
+- **Optional**: A WhatsApp chat widget and/or a Calendly embed.
+
+## 5. Technical Requirements
+
+- **Performance**:
+  - Target a Lighthouse score of 90+.
+  - Use `next/image` for all images.
+  - Lazy load below-the-fold content.
+- **SEO**:
+  - Use `next-seo` or Next.js metadata API for page titles, descriptions, and meta tags.
+  - Implement JSON-LD schema for the organization and services.
+- **Analytics**:
+  - Integrate GA4 and Meta Pixel. Store tracking IDs in environment variables.
+- **Tone of Voice**:
+  - All copy must be friendly, approachable, and human. Avoid jargon and hard-selling.
+
+## 6. Development Workflow
+
+- **Component Structure**: Create reusable components in a `/app/_components` directory.
+- **Code Style**: Follow standard Javascript and React best practices.
