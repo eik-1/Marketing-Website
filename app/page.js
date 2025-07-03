@@ -24,7 +24,7 @@ export default function Home() {
       />
       <Navbar />
       <Hero />
-      {/* <WhatWeDo /> */}
+      <WhatWeDo />
 
       {/* <Footer /> */}
     </main>

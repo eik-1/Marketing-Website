@@ -96,7 +96,7 @@ const Navbar = () => {
           left: "50%",
           transform: "translateX(-50%)",
           borderRadius: isScrolled ? "12px" : "0px",
-          backgroundColor: isScrolled ? "rgba(255, 255, 255, 0.95)" : "white",
+          backgroundColor: isScrolled ? "rgba(255, 255, 255, 0.4)" : "white",
           backdropFilter: isScrolled ? "blur(20px)" : "blur(0px)",
           boxShadow: isScrolled ? "0 4px 6px -1px rgba(0, 0, 0, 0.1)" : "",
         }}
