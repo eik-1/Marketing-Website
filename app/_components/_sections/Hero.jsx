@@ -69,7 +69,7 @@ const Hero = () => {
               <span className="text-blue-500 relative inline-block">
                 <em>partnership</em>
                 <svg
-                  className="absolute pointer-events-none -left-1 lg:-left-8 -top-2 -right-5 lg:bottom-0"
+                  className="absolute pointer-events-none -left-1 lg:-left-8 -top-2 lg:-right-8 -right-12 lg:bottom-0 bottom-10"
                   viewBox="0 -15 480 130"
                   fill="none"
                 >
