@@ -1,12 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
-import { FaInstagram } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
 
-import iphoneFrame from "@/public/mobile_svg.png";
 import FreeAuditButton from "../FreeAuditButton";
 import StarSvg from "../StarSvg";
-import VideoPhone from "../VideoPhone";
+import HeroIllustration from "../HeroIllustration";
 
 const Hero = () => {
   // Simplified animation variants for major sections only
@@ -54,22 +51,56 @@ const Hero = () => {
   return (
     <>
       <motion.section
-        className="h-[100vh] w-auto lg:p-16 p-6 lg:mt-16 mt-32 flex justify-between lg:flex-row flex-col items-center"
+        className="lg:h-[100vh] h-fit w-auto lg:p-16 p-6 lg:mt-16 mt-32 flex justify-between lg:flex-row flex-col items-center relative overflow-hidden"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
+        {/* Background SVG */}
+        <div className="absolute inset-0 w-full h-full z-0">
+          <svg
+            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3/4 h-auto lg:min-w-[800px] min-w-[1800px]"
+            width="1102"
+            height="551"
+            viewBox="0 -36 1102 551"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYEnd meet"
+          >
+            <motion.path
+              d="M0,515 A551,551 0 0,1 1102,515 L1102,515 L0,515 Z"
+              fill="#E6F3FF"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+            />
+            <motion.path
+              d="M151,515 A400,400 0 0,1 951,515 L951,515 L151,515 Z"
+              fill="#CCE7FF"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.7, ease: "easeOut" }}
+            />
+            <motion.path
+              d="M301,515 A250,250 0 0,1 801,515 L801,515 L301,515 Z"
+              fill="#99D6FF"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.9, ease: "easeOut" }}
+            />
+          </svg>
+        </div>
+
         <motion.div
-          className="flex flex-col lg:gap-4 gap-8 lg:w-1/2 w-full mb-16 lg:mb-0"
+          className="flex flex-col lg:gap-4 gap-8 lg:w-1/2 w-full mb-16 lg:mb-0 relative z-10"
           variants={slideInFromLeft}
         >
-          <h1 className="lg:text-[4.5rem] text-5xl font-black flex flex-wrap text-black leading-tight flex-col lg:text-left text-center">
+          <h1 className="lg:text-[4.5rem] text-[2.75rem] font-black flex flex-wrap text-black leading-tight flex-col lg:text-left text-center">
             <span>
               Marketing that feels like a{" "}
               <span className="text-blue-500 relative inline-block">
                 <em>partnership</em>
                 <svg
-                  className="absolute pointer-events-none -left-1 lg:-left-8 -top-2 lg:-right-8 -right-12 lg:bottom-0 bottom-10"
+                  className="absolute pointer-events-none lg:-left-8 -left-5 -top-2 lg:-right-8 -right-5 lg:bottom-0"
                   viewBox="0 -15 480 130"
                   fill="none"
                 >
@@ -95,16 +126,16 @@ const Hero = () => {
               <span className="text-red-400 relative inline-block">pitch</span>
             </span>
           </h1>
-          <p className="text-gray-500 lg:text-2xl font-medium text-center lg:text-left">
+          <p className="text-black lg:text-2xl font-medium text-center lg:text-left">
             We work with your budget and goals to deliver results, not fluff.
           </p>
           <div className="mt-4 flex gap-8 items-center justify-center lg:justify-start">
             <FreeAuditButton />
           </div>
-          <div className="lg:mt-8 mt-15 flex items-center gap-x-8 gap-y-2 lg:text-[1rem] text-xs text-black font-medium justify-center lg:justify-start">
+          <div className="lg:mt-8 mt-10 flex items-center gap-x-8 gap-y-2 lg:text-[1rem] text-sm text-black font-medium justify-center lg:justify-start">
             <div className="flex items-center gap-2">
               <StarSvg className="lg:w-6 lg:h-6 w-4 h-4" />
-              <span>Enhanced Online Visibility</span>
+              <span>Enhanced Visibility</span>
             </div>
             <div className="flex items-center gap-2">
               <StarSvg className="lg:w-6 lg:h-6 w-4 h-4" />
@@ -117,14 +148,10 @@ const Hero = () => {
           </div>
         </motion.div>
         <motion.div
-          className="w-1/2 flex justify-center items-center"
+          className="lg:w-1/2 w-full flex justify-center items-center relative z-10"
           variants={slideInFromRight}
         >
-          <VideoPhone
-            imageSrc={iphoneFrame}
-            className="w-1/2"
-            videoSrc="https://videos.pexels.com/video-files/8946986/8946986-uhd_1440_2732_25fps.mp4"
-          />
+          <HeroIllustration />
         </motion.div>
       </motion.section>
     </>
