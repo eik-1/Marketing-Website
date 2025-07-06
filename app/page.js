@@ -12,7 +12,7 @@ export default function Home() {
       <div className="relative z-10 min-h-screen bg-white">
         <Navbar />
         <Hero />
-        <VideoSection />
+        <VideoSection videoSrc="https://res.cloudinary.com/doac8yyie/video/upload/v1751783569/3254066-uhd_3840_2160_25fps_ctpkhz.mp4" />
       </div>
       <Footer />
     </>
