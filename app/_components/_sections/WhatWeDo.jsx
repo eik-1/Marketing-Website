@@ -1,7 +1,58 @@
 "use client";
 import { motion } from "framer-motion";
+import {
+  SearchCheck,
+  Sparkle,
+  BadgeCheck,
+  MonitorSmartphone,
+} from "lucide-react";
+
+import ServiceCard from "../ServiceCard";
 
 const WhatWeDo = () => {
+  const services = [
+    {
+      id: "seo",
+      title: "Search Engine Optimization (SEO)",
+      description:
+        "Enhance your online visibility & drive organic traffic with our advanced SEO techniques. We optimize your website to rank higher.",
+      backgroundImage: "/services/service-img2.png",
+      Icon: SearchCheck,
+      className: "lg:col-span-1",
+      delay: 0,
+    },
+    {
+      id: "ppc",
+      title: "Pay-Per-Click (PPC) Advertising",
+      description:
+        "Reach your audience instantly and drive qualified leads with targeted PPC campaigns. Our experts craft compelling ad copy and optimize.",
+      backgroundImage: "/services/service-img4.jpg",
+      Icon: Sparkle,
+      className: "lg:col-span-2",
+      delay: 0.2,
+    },
+    {
+      id: "social",
+      title: "Social Media Marketing",
+      description:
+        "Build a strong brand presence and engage with your audience on social media platforms. We create strategic social media campaigns to boost brand.",
+      backgroundImage: "/services/service-img1.png",
+      Icon: BadgeCheck,
+      className: "lg:col-span-2",
+      delay: 0.4,
+    },
+    {
+      id: "web-design",
+      title: "Website Design and Development",
+      description:
+        "Make a lasting impression with a professionally designed and user-friendly website. Our web design and development services ensure website.",
+      backgroundImage: "/services/service-img3.jpg",
+      Icon: MonitorSmartphone,
+      className: "lg:col-span-1",
+      delay: 0.6,
+    },
+  ];
+
   return (
     <section className="w-full bg-white py-20 lg:py-28 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -12,16 +63,13 @@ const WhatWeDo = () => {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          {/* <div className="inline-block px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium mb-6">
-            [ OUR SERVICES ]
-          </div> */}
           <h2 className="text-5xl lg:text-6xl font-black text-gray-900 mb-6">
             Our Marketing
             <br />
             <span className="text-blue-500 relative inline-block">
               Services
               <svg
-                className="absolute pointer-events-none lg:-left-1 -left-5 top-12 lg:-right-45 -right-5 lg:bottom-0"
+                className="absolute pointer-events-none lg:-left-1 -left-5 lg:top-12 top-9 lg:-right-45 -right-5 lg:bottom-0"
                 height="45"
                 width="250"
                 viewBox="0 0 666 42"
@@ -44,198 +92,14 @@ const WhatWeDo = () => {
         </motion.div>
 
         <div className="relative">
-          {/* First Row - SEO & PPC */}
           <div className="grid lg:grid-cols-3 gap-8 mb-8">
-            {/* SEO Card */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="lg:col-span-1 bg-gradient-to-br from-pink-100 to-pink-200 rounded-3xl p-8 relative overflow-hidden group cursor-pointer"
-            >
-              <div className="relative z-10">
-                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-lg">
-                  <svg
-                    className="w-8 h-8 text-pink-600"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  Search Engine Optimization (SEO)
-                </h3>
-                <p className="text-gray-700 mb-6">
-                  Enhance your online visibility & drive organic traffic with
-                  our advanced SEO techniques. We optimize your website to rank
-                  higher.
-                </p>
-                <div className="flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <svg
-                    className="w-5 h-5 text-gray-900"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </div>
-              </div>
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-pink-300 rounded-full opacity-20"></div>
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-pink-300 rounded-full opacity-10"></div>
-            </motion.div>
-
-            {/* PPC Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="lg:col-span-2 bg-gradient-to-br from-blue-100 to-blue-200 rounded-3xl p-8 relative overflow-hidden group cursor-pointer"
-            >
-              <div className="relative z-10">
-                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-lg">
-                  <svg
-                    className="w-8 h-8 text-blue-600"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  Pay-Per-Click (PPC) Advertising
-                </h3>
-                <p className="text-gray-700 mb-6">
-                  Reach your audience instantly and drive qualified leads with
-                  targeted PPC campaigns. Our experts craft compelling ad copy
-                  and optimize.
-                </p>
-                <div className="flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <svg
-                    className="w-5 h-5 text-gray-900"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </div>
-              </div>
-              {/* Decorative elements */}
-              <div className="absolute -top-8 -right-8 w-32 h-32 bg-blue-300 rounded-full opacity-20"></div>
-              <div className="absolute bottom-0 left-1/3 w-24 h-24 bg-blue-300 rounded-full opacity-15"></div>
-            </motion.div>
+            <ServiceCard {...services[0]} />
+            <ServiceCard {...services[1]} />
           </div>
 
-          {/* Second Row - Social Media & Web Design */}
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* Social Media Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="lg:col-span-2 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-3xl p-8 relative overflow-hidden group cursor-pointer"
-            >
-              <div className="relative z-10">
-                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-lg">
-                  <svg
-                    className="w-8 h-8 text-yellow-600"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M16 3H8C6.89 3 6 3.89 6 5v14c0 1.11.89 2 2 2h8c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm-1 2v2.5h-1.5V5H15zm-2.5 0v2.5H11V5h1.5zM9.5 5V7.5H8V5h1.5z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  Social Media Marketing
-                </h3>
-                <p className="text-gray-700 mb-6">
-                  Build a strong brand presence and engage with your audience on
-                  social media platforms. We create strategic social media
-                  campaigns to boost brand.
-                </p>
-                <div className="flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <svg
-                    className="w-5 h-5 text-gray-900"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </div>
-              </div>
-              {/* Decorative elements */}
-              <div className="absolute -top-6 right-8 w-28 h-28 bg-yellow-300 rounded-full opacity-20"></div>
-              <div className="absolute -bottom-4 -left-4 w-20 h-20 bg-yellow-300 rounded-full opacity-25"></div>
-            </motion.div>
-
-            {/* Web Design Card */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              viewport={{ once: true }}
-              className="lg:col-span-1 bg-gradient-to-br from-green-100 to-green-200 rounded-3xl p-8 relative overflow-hidden group cursor-pointer"
-            >
-              <div className="relative z-10">
-                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-lg">
-                  <svg
-                    className="w-8 h-8 text-green-600"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M20 3H4c-1.11 0-2 .89-2 2v11c0 1.11.89 2 2 2h3l-1 1v2h12v-2l-1-1h3c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 13H4V5h16v11z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  Website Design and Development
-                </h3>
-                <p className="text-gray-700 mb-6">
-                  Make a lasting impression with a professionally designed and
-                  user-friendly website. Our web design and development services
-                  ensure website.
-                </p>
-                <div className="flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <svg
-                    className="w-5 h-5 text-gray-900"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </div>
-              </div>
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-green-300 rounded-full opacity-20"></div>
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-green-300 rounded-full opacity-10"></div>
-            </motion.div>
+            <ServiceCard {...services[2]} />
+            <ServiceCard {...services[3]} />
           </div>
         </div>
 

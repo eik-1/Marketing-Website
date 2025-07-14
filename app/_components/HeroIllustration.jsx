@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
 import Image from "next/image";
 
 import ill1 from "@/public/hero-illustration.png";
@@ -39,8 +38,8 @@ const HeroIllustration = () => {
   };
 
   return (
-    <div className="flex justify-end items-center w-full h-full">
-      <div className="w-full h-full ml-30">
+    <div className="flex justify-center items-center w-full h-full">
+      <div className="lg:w-full lg:h-full lg:ml-30 w-3/4 h-3/4 mt-10">
         <Image
           src={ill1}
           alt="hero illustration"

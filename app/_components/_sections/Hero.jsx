@@ -51,7 +51,7 @@ const Hero = () => {
   return (
     <>
       <motion.section
-        className="lg:h-[100vh] h-fit w-auto lg:p-16 p-6 lg:mt-16 mt-32 flex justify-between lg:flex-row flex-col items-center relative overflow-hidden"
+        className="lg:h-[100vh] h-fit w-auto lg:p-16 p-6 lg:mt-16 mt-28 flex justify-between lg:flex-row flex-col items-center relative overflow-hidden"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
