@@ -47,6 +47,7 @@ const Navbar = () => {
   const menuVariants = {
     closed: {
       x: "100%",
+      opacity: 0,
       transition: {
         type: "spring",
         stiffness: 300,
@@ -55,6 +56,7 @@ const Navbar = () => {
     },
     open: {
       x: "0%",
+      opacity: 1,
       transition: {
         type: "spring",
         stiffness: 300,

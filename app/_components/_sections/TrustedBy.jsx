@@ -30,15 +30,12 @@ const TrustedBy = ({ logos = [] }) => {
   const maxDragLeft = Math.min(0, containerWidth - totalContentWidth + 100);
 
   return (
-    <section className="w-full bg-white py-8 sm:py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-left mb-6 sm:mb-8">
-          <h2 className="text-lg sm:text-2xl font-semibold text-gray-900 mb-1">
-            Trusted by
+    <section className="w-full bg-white py-4">
+      <div className="max-w-7xl mx-auto lg:px-6 px-3">
+        <div className="text-left p-4 mb-2 flex items-center justify-center lg:justify-start">
+          <h2 className="text-lg lg:text-xl font-semibold text-gray-900 mb-1 lg:inline-block inline-flex">
+            Trusted by Top Companies
           </h2>
-          <p className="text-lg sm:text-2xl font-semibold text-gray-900">
-            Top Companies
-          </p>
         </div>
 
         <div
@@ -57,16 +54,15 @@ const TrustedBy = ({ logos = [] }) => {
               right: 0,
             }}
             dragElastic={0.1}
-            className="flex cursor-grab gap-8 active:cursor-grabbing"
+            className="flex cursor-grab gap-0 lg:gap-8 active:cursor-grabbing"
             whileDrag={{ cursor: "grabbing" }}
           >
             {infiniteLogos.map((logo, index) => (
               <div
                 key={`${logo.name}-${index}`}
-                className="flex-shrink-0 flex items-center justify-center px-6 py-4"
-                style={{ width: "200px" }}
+                className="flex-shrink-0 flex items-center justify-center px-6 py-4 w-[150px] sm:w-[200px]"
               >
-                <div className="relative h-12 sm:h-16 lg:h-20 w-full max-w-[160px]">
+                <div className="relative h-12 sm:h-10 lg:h-20 w-full max-w-[160px]">
                   <Image
                     src={logo.src}
                     alt={logo.alt}
