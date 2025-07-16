@@ -59,7 +59,7 @@ const Hero = () => {
         {/* Background SVG */}
         <div className="absolute inset-0 w-full h-full z-0">
           <svg
-            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3/4 h-auto lg:min-w-[800px] min-w-[1800px]"
+            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full h-auto lg:min-w-[800px] max-w-none"
             width="1102"
             height="551"
             viewBox="0 -36 1102 551"
@@ -94,7 +94,7 @@ const Hero = () => {
           className="flex flex-col lg:gap-4 gap-8 lg:w-1/2 w-full mb-16 lg:mb-0 relative z-10"
           variants={slideInFromLeft}
         >
-          <h1 className="lg:text-[4.5rem] text-[2.75rem] font-black flex flex-wrap text-black leading-tight flex-col lg:text-left text-center">
+          <h1 className="lg:text-[4.5rem] text-[2.5rem] font-black flex flex-wrap text-black leading-tight flex-col lg:text-left text-center">
             <span>
               Marketing that feels like a{" "}
               <span className="text-blue-500 relative inline-block">
