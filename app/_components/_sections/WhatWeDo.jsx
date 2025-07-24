@@ -114,7 +114,7 @@ const WhatWeDo = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-4 rounded-full text-lg transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center gap-3"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-4 rounded-full text-lg transition-all duration-300 shadow-xl cursor-pointer inline-flex items-center gap-3"
           >
             Get Started Now
             <svg

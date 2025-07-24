@@ -51,7 +51,7 @@ const Hero = () => {
   return (
     <>
       <motion.section
-        className="lg:h-[100vh] h-fit w-auto lg:p-16 p-6 lg:mt-16 mt-28 flex justify-between lg:flex-row flex-col items-center relative overflow-hidden"
+        className="lg:h-[100vh] h-fit w-auto lg:p-16 p-6 lg:pt-24 pt-20 flex justify-between lg:flex-row flex-col items-center relative overflow-hidden"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -99,8 +99,9 @@ const Hero = () => {
               Marketing that feels like a{" "}
               <span className="text-blue-500 relative inline-block">
                 <em>partnership</em>
+                {/* Desktop SVG */}
                 <svg
-                  className="absolute pointer-events-none lg:-left-8 -left-5 -top-2 lg:-right-8 -right-5 lg:bottom-0"
+                  className="hidden lg:block absolute pointer-events-none lg:-left-8 -top-2 lg:-right-8 lg:bottom-0"
                   viewBox="0 -15 480 130"
                   fill="none"
                 >
@@ -108,6 +109,27 @@ const Hero = () => {
                     d=" M397.9620056152344,3.010999917984009 C447.5,9.472999572753906 479.9989929199219,31.972999572753906 466.5,57.702999114990234 C437.5780029296875,112.8290023803711 23.5,105.72699737548828 23.5,52.702999114990234 C23.5,-14.010000228881836 375.7650146484375,-3.5490000247955322 468.8349914550781,25.197999954223633"
                     stroke="#3b82f6"
                     strokeWidth="3"
+                    fill="none"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{
+                      duration: 1.5,
+                      delay: 1.2,
+                      ease: "easeInOut",
+                    }}
+                  />
+                </svg>
+                {/* Mobile SVG */}
+                <svg
+                  className="lg:hidden absolute pointer-events-none inset-0 w-full h-full overflow-visible"
+                  viewBox="30 -10 420 100"
+                  fill="none"
+                  preserveAspectRatio="none"
+                >
+                  <motion.path
+                    d="M397.9620056152344,3.010999917984009 C447.5,9.472999572753906 479.9989929199219,31.972999572753906 466.5,57.702999114990234 C437.5780029296875,112.8290023803711 23.5,105.72699737548828 23.5,52.702999114990234 C23.5,-14.010000228881836 375.7650146484375,-3.5490000247955322 468.8349914550781,25.197999954223633"
+                    stroke="#3b82f6"
+                    strokeWidth="5"
                     fill="none"
                     initial={{ pathLength: 0 }}
                     animate={{ pathLength: 1 }}

@@ -27,14 +27,14 @@ const AboutUs = () => {
                   [ ABOUT US ]
                 </div>
 
-                <h3 className="text-4xl lg:text-5xl font-black text-white mb-8 leading-tight">
+                <h3 className="text-3xl lg:text-5xl font-black text-white mb-4 leading-tight">
                   Your Experience Is
                   <br />
                   Everything To Us
                 </h3>
 
                 <div className="flex items-start gap-6 mb-10">
-                  <p className="text-xl text-gray-300 leading-relaxed">
+                  <p className="text-lg text-gray-300 leading-relaxed">
                     We believe in building lasting partnerships through
                     transparent communication and measurable results.
                   </p>
@@ -80,7 +80,7 @@ const AboutUs = () => {
                 viewport={{ once: true }}
                 className="relative h-full lg:min-h-[600px] min-h-[400px]"
               >
-                <div className="absolute inset-0 flex items-center justify-center p-8">
+                <div className="absolute inset-0 flex items-center justify-center">
                   <Image
                     src="/about-img2.jpg"
                     alt="About Us"

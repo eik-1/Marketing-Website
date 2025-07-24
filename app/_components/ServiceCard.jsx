@@ -25,9 +25,9 @@ const ServiceCard = ({
         style={{ backgroundImage: `url('${backgroundImage}')` }}
       />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-all duration-500" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent transition-all duration-500" />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-blue-600/90 via-blue-500/70 to-blue-400/20 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+      <div className="absolute inset-0 bg-gradient-to-t from-blue-500/90 via-blue-400/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
 
       <div className="relative z-10 p-8 h-full flex flex-col justify-end">
         <div className="transition-all duration-500 group-hover:transform group-hover:-translate-y-2">
