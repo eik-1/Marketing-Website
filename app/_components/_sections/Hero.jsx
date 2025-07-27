@@ -51,7 +51,7 @@ const Hero = () => {
   return (
     <>
       <motion.section
-        className="lg:h-[100vh] h-fit w-auto lg:p-16 p-6 lg:pt-24 pt-20 flex justify-between lg:flex-row flex-col items-center relative overflow-hidden"
+        className="lg:h-[100vh] lg:mt-5 h-fit w-auto lg:p-16 p-6 lg:pt-26 pt-40 flex justify-between lg:flex-row flex-col items-center relative overflow-hidden"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -94,7 +94,7 @@ const Hero = () => {
           className="flex flex-col lg:gap-4 gap-8 lg:w-1/2 w-full mb-16 lg:mb-0 relative z-10"
           variants={slideInFromLeft}
         >
-          <h1 className="lg:text-[4.5rem] text-[2.75rem] font-black flex flex-wrap text-black leading-tight flex-col lg:text-left text-center">
+          <h1 className="lg:text-[4rem] text-[2.75rem] font-black flex flex-wrap text-black leading-tight flex-col lg:text-left text-center">
             <span>
               Marketing that feels like a{" "}
               <span className="text-blue-500 relative inline-block">
