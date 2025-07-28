@@ -11,6 +11,7 @@ import AboutUs from "./_components/_sections/AboutUs";
 import ScrollingText from "./_components/_sections/ScrollingText";
 import WhyChooseUs from "./_components/_sections/WhyChoose";
 import Testimonials from "./_components/_sections/Testimonials";
+import ContactUs from "./_components/_sections/ContactUs";
 
 export default function Home() {
   return (
@@ -22,10 +23,10 @@ export default function Home() {
         <VideoSection videoSrc="https://res.cloudinary.com/doac8yyie/video/upload/v1751783569/3254066-uhd_3840_2160_25fps_ctpkhz.mp4" />
         <AboutUs />
         <WhatWeDo />
-
         <ScrollingText />
         <WhyChooseUs />
         <Testimonials />
+        <ContactUs />
       </div>
 
       <Footer />
