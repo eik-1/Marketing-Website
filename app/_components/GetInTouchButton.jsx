@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-const GetInTouchButton = ({ href, buttonStyle }) => {
+const GetInTouchButton = ({ href = "/get-audit", buttonStyle }) => {
   return (
     <motion.a
       href={href}

@@ -4,21 +4,67 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname, useRouter } from "next/navigation";
 
 import logo from "@/public/oddstone-logo.svg";
 import GetInTouchButton from "./GetInTouchButton";
 import HamburgerButton from "./Hamburger";
 
 const navLinks = [
-  { title: "About", href: "/about" },
-  { title: "Services", href: "/services" },
-  { title: "How We Work", href: "/how-we-work" },
-  { title: "Testimonials", href: "/testimonials" },
+  { title: "About", href: "/about-us", type: "route" },
+  { title: "Services", href: "/services", type: "route" },
+  {
+    title: "How We Work",
+    href: "/#how-we-work",
+    type: "hash",
+    sectionId: "how-we-work",
+  },
+  {
+    title: "Testimonials",
+    href: "/#testimonials",
+    type: "hash",
+    sectionId: "testimonials",
+  },
 ];
+
+// Animation variants (defined once to avoid re-creation on each render)
+const menuVariants = {
+  closed: {
+    x: "100%",
+    opacity: 0,
+    transition: { type: "spring", stiffness: 300, damping: 30 },
+  },
+  open: {
+    x: "0%",
+    opacity: 1,
+    transition: { type: "spring", stiffness: 300, damping: 30 },
+  },
+};
+
+const linkVariants = {
+  closed: { opacity: 0, y: 20 },
+  open: { opacity: 1, y: 0 },
+};
+
+const containerVariants = {
+  closed: {},
+  open: { transition: { staggerChildren: 0.1, delayChildren: 0.3 } },
+};
+
+const baseUnderlineClasses =
+  "mb-0.5 inline-block relative pb-0.5 after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-blue-500 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 ease-in-out hover:after:scale-x-100";
+const desktopLinkClass =
+  "hover:text-blue-600 transition-colors duration-300 font-medium text-xl text-black " +
+  baseUnderlineClasses;
+const mobileLinkClass =
+  "hover:text-blue-600 transition-colors duration-300 font-semibold text-2xl text-black " +
+  baseUnderlineClasses;
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,7 +75,55 @@ const Navbar = () => {
   }, []);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((prev) => !prev);
+  };
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const closeMenuAfter = (delay = 300) => {
+    window.setTimeout(() => setIsOpen(false), delay);
+  };
+
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    setIsOpen(false);
+    if (pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      router.push("/");
+    }
+  };
+
+  const handleSectionClick = (e, sectionId) => {
+    e.preventDefault();
+
+    const perform = () => {
+      scrollToSection(sectionId);
+      closeMenuAfter();
+    };
+
+    if (pathname !== "/") {
+      router.push(`/#${sectionId}`);
+      const start = Date.now();
+      const tryScroll = () => {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          perform();
+        } else if (Date.now() - start < 3000) {
+          requestAnimationFrame(tryScroll);
+        } else {
+          setIsOpen(false);
+        }
+      };
+      setTimeout(tryScroll, 50);
+    } else {
+      perform();
+    }
   };
 
   useEffect(() => {
@@ -43,48 +137,6 @@ const Navbar = () => {
       document.body.style.overflow = "auto";
     };
   }, [isOpen]);
-
-  const menuVariants = {
-    closed: {
-      x: "100%",
-      opacity: 0,
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 30,
-      },
-    },
-    open: {
-      x: "0%",
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 30,
-      },
-    },
-  };
-
-  const linkVariants = {
-    closed: {
-      opacity: 0,
-      y: 20,
-    },
-    open: {
-      opacity: 1,
-      y: 0,
-    },
-  };
-
-  const containerVariants = {
-    closed: {},
-    open: {
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
-      },
-    },
-  };
 
   return (
     <>
@@ -112,7 +164,7 @@ const Navbar = () => {
         <div className="px-4 sm:px-6 lg:px-8 h-full">
           <motion.div className="flex items-center justify-between h-full">
             <motion.div className="flex-shrink-0">
-              <Link href="/">
+              <Link href="/" onClick={handleLogoClick}>
                 <Image
                   src={logo}
                   alt="Oddstone"
@@ -128,13 +180,13 @@ const Navbar = () => {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="hover:text-blue-600 transition-colors duration-300 font-medium text-xl text-black mb-0.5 inline-block relative pb-0.5 after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-blue-500 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 ease-in-out hover:after:scale-x-100"
+                  className={desktopLinkClass}
                 >
                   {link.title}
                 </Link>
               ))}
               <GetInTouchButton
-                href="/contact"
+                href="/get-audit"
                 buttonStyle="relative inline-block px-4 py-2 border border-black cursor-pointer rounded-full text-black overflow-hidden font-medium transition-colors duration-300 hover:text-white"
               />
             </motion.div>
@@ -153,7 +205,7 @@ const Navbar = () => {
             animate="open"
             exit="closed"
             variants={menuVariants}
-            className="fixed inset-0 bg-black z-40 flex flex-col items-center justify-center md:hidden"
+            className="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center md:hidden"
           >
             <motion.div
               variants={containerVariants}
@@ -162,9 +214,15 @@ const Navbar = () => {
               {navLinks.map((link) => (
                 <motion.div key={link.href} variants={linkVariants}>
                   <Link
-                    key={link.href}
                     href={link.href}
-                    className="hover:text-blue-600 transition-colors duration-300 font-semibold text-2xl text-white mb-0.5 inline-block relative pb-0.5 after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-blue-500 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 ease-in-out hover:after:scale-x-100"
+                    onClick={(e) => {
+                      if (link.type === "hash") {
+                        handleSectionClick(e, link.sectionId);
+                      } else {
+                        closeMenuAfter(0);
+                      }
+                    }}
+                    className={mobileLinkClass}
                   >
                     {link.title}
                   </Link>
@@ -173,7 +231,7 @@ const Navbar = () => {
               <motion.div variants={linkVariants} className="pt-3">
                 <GetInTouchButton
                   href="/contact"
-                  buttonStyle="relative inline-block px-6 py-3 border border-white cursor-pointer rounded-full text-white overflow-hidden font-medium transition-colors duration-300 hover:bg-white hover:text-black"
+                  buttonStyle="relative inline-block px-6 py-3 border border-black cursor-pointer rounded-full text-black overflow-hidden font-medium transition-colors duration-300 hover:bg-black hover:text-white"
                 />
               </motion.div>
             </motion.div>

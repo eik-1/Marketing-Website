@@ -80,7 +80,10 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="w-full py-12 lg:py-24 mt-5 overflow-hidden">
+    <section
+      id="testimonials"
+      className="w-full py-12 lg:py-24 mt-5 overflow-hidden"
+    >
       <motion.div
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         variants={containerVariants}

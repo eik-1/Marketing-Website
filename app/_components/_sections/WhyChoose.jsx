@@ -106,7 +106,10 @@ const WhyChooseUs = () => {
   };
 
   return (
-    <section className="w-full bg-blue-100 py-12 sm:py-16 lg:py-24 overflow-hidden relative">
+    <section
+      id="how-we-work"
+      className="w-full bg-blue-100 py-12 sm:py-16 lg:py-24 overflow-hidden relative"
+    >
       <div className="absolute inset-0 z-1">
         <PixelTrail
           pixelSize={20}
