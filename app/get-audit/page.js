@@ -4,11 +4,9 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import {
-  Zap,
   CheckCircle2,
   Clock,
   Loader2,
-  AlertTriangle,
   User,
   Mail,
   Globe,
@@ -62,24 +60,18 @@ export default function GetAuditPage() {
     setHasTriedSubmit(true);
     if (Object.keys(validation).length > 0) return;
 
-    const composedMessage = [
-      "Free Audit Request",
-      `Website / Link: ${form.website || "N/A"}`,
-      `Goals/Challenges: ${form.goals || "N/A"}`,
-      `Preferred Format: ${form.format}`,
-    ].join("\n");
-
     try {
       setIsSubmitting(true);
       setError("");
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/audit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: form.name,
           email: form.email,
-          phone: "",
-          message: composedMessage,
+          website: form.website,
+          goals: form.goals,
+          format: form.format,
           source: "get-audit",
         }),
       });
@@ -101,7 +93,6 @@ export default function GetAuditPage() {
         <section className="relative w-full py-20 sm:py-24 lg:py-28 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
-              {/* Left intro panel (inspired by screenshot) */}
               <motion.aside
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -109,15 +100,40 @@ export default function GetAuditPage() {
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 className="lg:col-span-2"
               >
-                <p className="text-sm font-semibold tracking-wider text-black/70">
-                  Get in touch
-                </p>
+                <motion.div
+                  className="inline-block px-4 py-2 bg-blue-500/10 border border-blue-500/20 text-blue-500 rounded-full text-sm font-medium w-fit"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  [ GET IN TOUCH ]
+                </motion.div>
                 <div className="mt-4">
-                  <h1 className="text-5xl sm:text-6xl font-black text-black leading-[0.95]">
+                  <h1 className="text-5xl lg:text-6xl font-black text-black leading-[0.95]">
                     Hey there!
                   </h1>
-                  <h2 className="mt-3 text-4xl sm:text-5xl font-black text-blue-600">
-                    Let’s chat
+                  <h2 className="mt-4 text-5xl lg:text-6xl font-black text-blue-600 leading-[0.95]">
+                    <span className="relative inline-block">
+                      Let’s chat
+                      <svg
+                        className="hidden lg:block absolute pointer-events-none lg:-left-8 -top-3 lg:-right-8 lg:bottom-0"
+                        viewBox="0 -15 480 130"
+                        fill="none"
+                      >
+                        <motion.path
+                          d=" M397.9620056152344,3.010999917984009 C447.5,9.472999572753906 479.9989929199219,31.972999572753906 466.5,57.702999114990234 C437.5780029296875,112.8290023803711 23.5,105.72699737548828 23.5,52.702999114990234 C23.5,-14.010000228881836 375.7650146484375,-3.5490000247955322 468.8349914550781,25.197999954223633"
+                          stroke="#3b82f6"
+                          strokeWidth="4"
+                          fill="none"
+                          initial={{ pathLength: 0 }}
+                          animate={{ pathLength: 1 }}
+                          transition={{
+                            duration: 1.5,
+                            delay: 1.2,
+                            ease: "easeInOut",
+                          }}
+                        />
+                      </svg>
+                    </span>
                   </h2>
                 </div>
                 <div className="mt-6 space-y-4 text-gray-700">
@@ -133,9 +149,9 @@ export default function GetAuditPage() {
                     Prefer email? Reach us at{" "}
                     <a
                       className="text-blue-600 underline underline-offset-4"
-                      href="mailto:hello@oddstone.marketing"
+                      href="mailto:contact@oddstone.co.uk"
                     >
-                      hello@oddstone.marketing
+                      contact@oddstone.co.uk
                     </a>
                   </p>
                 </div>
@@ -341,7 +357,7 @@ export default function GetAuditPage() {
                       urgent, email us at
                       <span className="font-semibold">
                         {" "}
-                        hello@oddstone.marketing
+                        contact@oddstone.co.uk
                       </span>
                       .
                     </p>

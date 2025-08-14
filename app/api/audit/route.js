@@ -3,9 +3,16 @@ import { Resend } from "resend";
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { name, email, phone = "", message, source = "" } = body || {};
+    const {
+      name,
+      email,
+      website = "",
+      goals = "",
+      format = "PDF",
+      source = "get-audit",
+    } = body || {};
 
-    if (!name || !email || !message) {
+    if (!name || !email) {
       return Response.json(
         { error: "Missing required fields" },
         { status: 400 }
@@ -21,14 +28,22 @@ export async function POST(request) {
     const payload = {
       name,
       email,
-      phone,
-      message,
+      website,
+      goals,
+      format,
       source,
       submittedAt,
       userAgent: request.headers.get("user-agent") || "",
       referer: request.headers.get("referer") || "",
       ip: request.headers.get("x-forwarded-for") || "",
     };
+
+    const composedMessage = [
+      "Free Audit Request",
+      `Website / Link: ${website || "N/A"}`,
+      `Goals/Challenges: ${goals || "N/A"}`,
+      `Preferred Format: ${format}`,
+    ].join("\n");
 
     const resendApiKey = process.env.RESEND_API_KEY;
     const toEmail = process.env.CONTACT_TO_EMAIL;
@@ -37,30 +52,35 @@ export async function POST(request) {
 
     if (!resendApiKey || !toEmail) {
       console.warn(
-        "Contact email sending skipped: missing RESEND_API_KEY or CONTACT_TO_EMAIL"
+        "Audit email sending skipped: missing RESEND_API_KEY or CONTACT_TO_EMAIL"
       );
       return Response.json({ ok: true });
     }
 
     const resend = new Resend(resendApiKey);
 
-    const adminSubject = `New enquiry from ${name}`;
+    const adminSubject = `New Audit Request from ${name}`;
     const adminHtml = `
       <div style="font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica Neue,Arial;line-height:1.6;color:#0a0a0a">
-        <h2 style="margin:0 0 8px 0">New Contact Enquiry</h2>
+        <h2 style="margin:0 0 8px 0">New Audit Request</h2>
         <p style="margin:0 0 16px 0">Submitted at: <strong>${submittedAt}</strong></p>
         <table cellpadding="8" cellspacing="0" style="border-collapse:collapse;background:#f8fafc;border-radius:12px">
           <tr><td><strong>Name</strong></td><td>${escapeHtml(name)}</td></tr>
           <tr><td><strong>Email</strong></td><td>${escapeHtml(email)}</td></tr>
-          <tr><td><strong>Phone</strong></td><td>${escapeHtml(phone)}</td></tr>
+          <tr><td><strong>Website / Link</strong></td><td>${escapeHtml(
+            website
+          )}</td></tr>
+          <tr><td><strong>Format</strong></td><td>${escapeHtml(
+            format
+          )}</td></tr>
           <tr><td><strong>Source</strong></td><td>${escapeHtml(
             source
           )}</td></tr>
         </table>
         <div style="margin-top:16px">
-          <div style="font-weight:700;margin-bottom:6px">Message</div>
+          <div style="font-weight:700;margin-bottom:6px">Goals / Challenges</div>
           <pre style="white-space:pre-wrap;background:#eef2ff;padding:12px;border-radius:10px">${escapeHtml(
-            message
+            goals
           )}</pre>
         </div>
       </div>
@@ -83,14 +103,14 @@ export async function POST(request) {
     if (sendConfirmation) {
       try {
         const confirmSubject =
-          "Thanks for contacting Oddstone — we’ll be in touch";
+          "Thanks for requesting a free audit — we’ll be in touch";
         const confirmHtml = `
           <div style="font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica Neue,Arial;line-height:1.6;color:#0a0a0a">
             <h2 style="margin:0 0 8px 0">Thanks, ${escapeHtml(name)} 👋</h2>
-            <p style="margin:0 0 12px 0">We’ve received your message and a UK specialist will reply within 24 hours.</p>
-            <p style="margin:0 0 4px 0">Here’s a copy of what you sent:</p>
+            <p style="margin:0 0 12px 0">We’ve received your audit request and will send it within 2 business days.</p>
+            <p style="margin:0 0 4px 0">Summary:</p>
             <pre style="white-space:pre-wrap;background:#f8fafc;padding:12px;border-radius:10px">${escapeHtml(
-              message
+              composedMessage
             )}</pre>
             <p style="margin-top:16px;color:#3b82f6">— Oddstone</p>
           </div>
@@ -108,7 +128,7 @@ export async function POST(request) {
 
     return Response.json({ ok: true });
   } catch (error) {
-    console.error("/api/contact error", error);
+    console.error("/api/audit error", error);
     return Response.json({ error: "Unexpected error" }, { status: 500 });
   }
 }

@@ -107,16 +107,14 @@ const ContactUs = () => {
 
               <div className="space-y-4 text-white">
                 <a
-                  href="mailto:hello@oddstone.marketing"
+                  href="mailto:contact@oddstone.co.uk"
                   className="flex items-center gap-3 p-3 rounded-xl hover:bg-blue-400 transition-colors "
                 >
                   <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white text-blue-600">
                     <Mail />
                   </span>
                   <div>
-                    <div className="font-semibold">
-                      hello@oddstone.marketing
-                    </div>
+                    <div className="font-semibold">contact@oddstone.co.uk</div>
                     <div className="text-sm text-white/80">
                       Email us anytime
                     </div>
@@ -307,10 +305,7 @@ const ContactUs = () => {
                 </h3>
                 <p className="mt-2 text-gray-600 max-w-md">
                   We’ll be in touch within 24 hours. If it’s urgent, email us at{" "}
-                  <span className="font-semibold">
-                    hello@oddstone.marketing
-                  </span>
-                  .
+                  <span className="font-semibold">contact@oddstone.co.uk</span>.
                 </p>
                 <button
                   type="button"
