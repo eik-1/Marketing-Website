@@ -87,8 +87,8 @@ function GetAuditContent() {
   };
 
   return (
-    <section className="relative w-full py-20 sm:py-24 lg:py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative w-full py-28 bg-white">
+      <div className="max-w-7xl mx-auto px-5 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
           <motion.aside
             initial={{ opacity: 0, x: -20 }}
@@ -105,15 +105,34 @@ function GetAuditContent() {
               [ GET IN TOUCH ]
             </motion.div>
             <div className="mt-4">
-              <h1 className="text-5xl lg:text-6xl font-black text-black leading-[0.95]">
+              <h1 className="text-5xl lg:text-5xl font-black text-black leading-[0.95]">
                 Hey there!
               </h1>
-              <h2 className="mt-4 text-5xl lg:text-6xl font-black text-blue-600 leading-[0.95]">
-                <span className="relative inline-block">
-                  Let’s chat
+              <h2 className="mt-4 text-5xl lg:text-5xl font-black text-blue-600 leading-[0.95]">
+                <span className="relative inline lg:inline-block">
+                  Let&apos;s chat
                   <svg
                     className="hidden lg:block absolute pointer-events-none lg:-left-8 -top-3 lg:-right-8 lg:bottom-0"
                     viewBox="0 -15 480 130"
+                    fill="none"
+                  >
+                    <motion.path
+                      d=" M397.9620056152344,3.010999917984009 C447.5,9.472999572753906 479.9989929199219,31.972999572753906 466.5,57.702999114990234 C437.5780029296875,112.8290023803711 23.5,105.72699737548828 23.5,52.702999114990234 C23.5,-14.010000228881836 375.7650146484375,-3.5490000247955322 468.8349914550781,25.197999954223633"
+                      stroke="#3b82f6"
+                      strokeWidth="4"
+                      fill="none"
+                      initial={{ pathLength: 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{
+                        duration: 1.5,
+                        delay: 1.2,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  </svg>
+                  <svg
+                    className="lg:hidden block absolute pointer-events-none -left-5 -top-1"
+                    viewBox="10 -20 640 250"
                     fill="none"
                   >
                     <motion.path

@@ -230,7 +230,7 @@ const Navbar = () => {
               ))}
               <motion.div variants={linkVariants} className="pt-3">
                 <GetInTouchButton
-                  href="/contact"
+                  href="/get-audit"
                   buttonStyle="relative inline-block px-6 py-3 border border-black cursor-pointer rounded-full text-black overflow-hidden font-medium transition-colors duration-300 hover:bg-black hover:text-white"
                 />
               </motion.div>

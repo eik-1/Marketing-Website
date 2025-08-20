@@ -1,57 +1,44 @@
 "use client";
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import GetInTouchButton from "../GetInTouchButton";
+import { services as servicesData } from "@/app/services/_data";
 import {
   SearchCheck,
   Sparkle,
   BadgeCheck,
   MonitorSmartphone,
+  CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
+  ArrowRight,
 } from "lucide-react";
+import MagicCard from "../MagicCard";
 
-import ServiceCard from "../ServiceCard";
+const iconMap = { SearchCheck, Sparkle, BadgeCheck, MonitorSmartphone };
 
 const WhatWeDo = () => {
-  const services = [
-    {
-      id: "seo",
-      title: "Search Engine Optimization (SEO)",
-      description:
-        "Enhance your online visibility & drive organic traffic with our advanced SEO techniques. We optimize your website to rank higher.",
-      backgroundImage: "/services/service-img2.png",
-      Icon: SearchCheck,
-      className: "lg:col-span-1",
-      delay: 0,
-    },
-    {
-      id: "ppc",
-      title: "Pay-Per-Click (PPC) Advertising",
-      description:
-        "Reach your audience instantly and drive qualified leads with targeted PPC campaigns. Our experts craft compelling ad copy and optimize.",
-      backgroundImage: "/services/service-img4.jpg",
-      Icon: Sparkle,
-      className: "lg:col-span-2",
-      delay: 0.2,
-    },
-    {
-      id: "social",
-      title: "Social Media Marketing",
-      description:
-        "Build a strong brand presence and engage with your audience on social media platforms. We create strategic social media campaigns to boost brand.",
-      backgroundImage: "/services/service-img1.png",
-      Icon: BadgeCheck,
-      className: "lg:col-span-2",
-      delay: 0.4,
-    },
-    {
-      id: "web-design",
-      title: "Website Design and Development",
-      description:
-        "Make a lasting impression with a professionally designed and user-friendly website. Our web design and development services ensure website.",
-      backgroundImage: "/services/service-img3.jpg",
-      Icon: MonitorSmartphone,
-      className: "lg:col-span-1",
-      delay: 0.6,
-    },
-  ];
+  const items = useMemo(
+    () =>
+      servicesData.map((s) => ({
+        id: s.id,
+        title: s.title,
+        kicker: s.heroKicker,
+        description: s.shortDescription,
+        highlights: s.highlights.slice(0, 4),
+        Icon: iconMap[s.icon] || SearchCheck,
+      })),
+    []
+  );
+
+  const [page, setPage] = useState(0);
+  const pageSize = 2;
+  const totalPages = Math.ceil(items.length / pageSize);
+  const visible = items.slice(page * pageSize, page * pageSize + pageSize);
+
+  const goPrev = () => setPage((p) => (p - 1 + totalPages) % totalPages);
+  const goNext = () => setPage((p) => (p + 1) % totalPages);
 
   return (
     <section className="w-full bg-white py-20 lg:py-20 overflow-hidden">
@@ -61,7 +48,7 @@ const WhatWeDo = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-12 lg:mb-16"
         >
           <h2 className="text-5xl lg:text-6xl font-black text-gray-900 mb-6">
             Our Marketing
@@ -91,47 +78,93 @@ const WhatWeDo = () => {
           </p>
         </motion.div>
 
-        <div className="relative">
-          <div className="grid lg:grid-cols-3 gap-8 mb-8">
-            <ServiceCard {...services[0]} />
-            <ServiceCard {...services[1]} />
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-8">
-            <ServiceCard {...services[2]} />
-            <ServiceCard {...services[3]} />
-          </div>
+        {/* Top bar with Show All Services */}
+        <div className="flex items-center justify-end mb-6">
+          <GetInTouchButton
+            href="/services"
+            label="View All Services"
+            icon={ArrowRight}
+            buttonStyle="relative inline-block px-4 py-2 border border-black cursor-pointer rounded-full text-black overflow-hidden font-medium transition-colors duration-300 hover:text-white"
+          />
         </div>
 
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mt-20"
-        >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-4 rounded-full text-lg transition-all duration-300 shadow-xl cursor-pointer inline-flex items-center gap-3"
-          >
-            Get Started Now
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+        {/* Carousel */}
+        <div className="relative">
+          <div className="absolute -left-6 sm:-left-8 md:-left-10 top-1/2 -translate-y-1/2 z-10">
+            <button
+              aria-label="Previous"
+              onClick={goPrev}
+              className="cursor-pointer inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M13 7l5 5m0 0l-5 5m5-5H6"
-              />
-            </svg>
-          </motion.button>
-        </motion.div>
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+          </div>
+          <div className="absolute -right-6 sm:-right-8 md:-right-10 top-1/2 -translate-y-1/2 z-10">
+            <button
+              aria-label="Next"
+              onClick={goNext}
+              className="cursor-pointer inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+
+          <div className="overflow-hidden">
+            <motion.div
+              key={page}
+              initial={{ x: 40, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            >
+              {visible.map((s) => (
+                <MagicCard key={s.id} className="rounded-3xl">
+                  <div className="rounded-3xl border border-gray-200 bg-white p-6 sm:p-7 shadow-sm">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center">
+                        <s.Icon className="w-6 h-6 text-blue-600" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-500 font-semibold">
+                          {s.kicker}
+                        </p>
+                        <h3 className="text-xl font-bold text-black leading-tight">
+                          {s.title}
+                        </h3>
+                      </div>
+                    </div>
+
+                    <p className="mt-4 text-gray-700 text-sm sm:text-base">
+                      {s.description}
+                    </p>
+
+                    <ul className="mt-4 space-y-2">
+                      {s.highlights.map((h) => (
+                        <li
+                          key={h}
+                          className="flex items-start gap-2 text-gray-800 text-sm"
+                        >
+                          <CheckCircle2 className="w-4 h-4 text-blue-600 mt-0.5" />
+                          <span>{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="mt-6">
+                      <Link
+                        href={`/services/${s.id}`}
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 text-gray-900 hover:border-blue-400 hover:text-blue-600 transition-colors cursor-pointer"
+                      >
+                        Learn More About {s.kicker}
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
+                  </div>
+                </MagicCard>
+              ))}
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
