@@ -35,6 +35,16 @@ export default function ServicesPage() {
       <div className="relative z-10 min-h-screen bg-white">
         <Navbar />
 
+        {/* Breadcrumbs for UX/SEO */}
+        <nav className="sr-only" aria-label="Breadcrumb">
+          <ol>
+            <li>
+              <Link href="/">Home</Link>
+            </li>
+            <li>Services</li>
+          </ol>
+        </nav>
+
         {/* Hero */}
         <section className="w-full bg-white pt-28 sm:pt-32 pb-8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -143,7 +153,7 @@ export default function ServicesPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-center mt-16"
             >
-              <a
+              <Link
                 href="/get-audit"
                 className="inline-flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-full transition-all duration-300 shadow-xl cursor-pointer"
               >
@@ -161,7 +171,7 @@ export default function ServicesPage() {
                     d="M13 7l5 5m0 0l-5 5m5-5H6"
                   />
                 </svg>
-              </a>
+              </Link>
             </motion.div>
           </div>
         </section>

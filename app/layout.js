@@ -8,7 +8,7 @@ export const metadata = {
   },
   description:
     "Marketing that feels like a partnership — not a pitch. SEO, PPC, social and automation tailored to your goals and budget.",
-  metadataBase: new URL("https://www.oddstone.example"),
+  metadataBase: new URL("https://oddstone.co.uk"),
   openGraph: {
     title: "Oddstone — Friendly, results-first marketing",
     description:
@@ -26,7 +26,7 @@ export const metadata = {
     title: "Oddstone — Friendly, results-first marketing",
     description:
       "SEO, PPC, social and automation tailored to your goals and budget.",
-    images: ["/og-pic2.png"],
+    images: ["/og-pic.webp"],
   },
   alternates: { canonical: "/" },
 };
@@ -62,8 +62,8 @@ export default function RootLayout({ children }) {
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Oddstone",
-              url: "https://www.oddstone.example",
-              logo: "https://www.oddstone.example/og-pic2.png",
+              url: "https://oddstone.co.uk",
+              logo: "https://oddstone.co.uk/og-pic.webp",
               sameAs: [
                 "https://www.linkedin.com/company/oddstone",
                 "https://www.instagram.com/oddstone",

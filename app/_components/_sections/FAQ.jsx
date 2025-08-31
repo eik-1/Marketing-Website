@@ -66,6 +66,22 @@ export default function FAQ() {
       className="w-full bg-white py-12 lg:py-20 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* FAQPage schema for SEO */}
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: faqs.map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+              })),
+            }),
+          }}
+        />
         <motion.div
           variants={container}
           initial="hidden"

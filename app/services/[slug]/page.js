@@ -13,6 +13,13 @@ export function generateMetadata({ params }) {
   return {
     title: `${svc.title} | Oddstone`,
     description: svc.shortDescription,
+    alternates: { canonical: `/services/${params.slug}` },
+    openGraph: {
+      title: `${svc.title} | Oddstone`,
+      description: svc.shortDescription,
+      url: `/services/${params.slug}`,
+      type: "article",
+    },
   };
 }
 
@@ -37,6 +44,54 @@ export default function ServiceDetailPage({ params }) {
     <>
       <div className="relative z-10 min-h-screen bg-white">
         <Navbar />
+
+        {/* BreadcrumbList JSON-LD */}
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: "/",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Services",
+                  item: "/services",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: svc.title,
+                  item: `/services/${params.slug}`,
+                },
+              ],
+            }),
+          }}
+        />
+
+        {/* Service JSON-LD */}
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Service",
+              name: svc.title,
+              description: svc.shortDescription,
+              areaServed: "GB",
+              provider: { "@type": "Organization", name: "Oddstone" },
+            }),
+          }}
+        />
 
         <ServiceDetailContent service={svc} />
       </div>
