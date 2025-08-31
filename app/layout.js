@@ -3,29 +3,29 @@ import "./globals.css";
 
 export const metadata = {
   title: {
-    default: "Oddstone — Friendly, results-first marketing",
+    default: "Oddstone Marketing | SEO, PPC & Social Media Agency",
     template: "%s | Oddstone",
   },
   description:
-    "Marketing that feels like a partnership — not a pitch. SEO, PPC, social and automation tailored to your goals and budget.",
+    "Oddstone Marketing helps small businesses grow with SEO, PPC, social media, and automation. Friendly, collaborative, and focused on results.",
   metadataBase: new URL("https://oddstone.co.uk"),
   openGraph: {
-    title: "Oddstone — Friendly, results-first marketing",
+    title: "Oddstone Marketing | SEO, PPC & Social Media Agency",
     description:
-      "SEO, PPC, social and automation tailored to your goals and budget.",
+      "Oddstone Marketing helps small businesses grow with SEO, PPC, social media, and automation. Friendly, collaborative, and focused on results.",
     url: "/",
     siteName: "Oddstone",
     images: [
-      { url: "/og-pic2.png", width: 1200, height: 630, alt: "Oddstone" },
+      { url: "/og-pic.webp", width: 1200, height: 630, alt: "Oddstone" },
     ],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Oddstone — Friendly, results-first marketing",
+    title: "Oddstone Marketing | SEO, PPC & Social Media Agency",
     description:
-      "SEO, PPC, social and automation tailored to your goals and budget.",
+      "Oddstone Marketing helps small businesses grow with SEO, PPC, social media, and automation. Friendly, collaborative, and focused on results.",
     images: ["/og-pic.webp"],
   },
   alternates: { canonical: "/" },
@@ -65,7 +65,7 @@ export default function RootLayout({ children }) {
               url: "https://oddstone.co.uk",
               logo: "https://oddstone.co.uk/og-pic.webp",
               sameAs: [
-                "https://www.linkedin.com/company/oddstone",
+                "https://www.linkedin.com/company/oddstone-marketing-services",
                 "https://www.instagram.com/oddstone",
               ],
             }),

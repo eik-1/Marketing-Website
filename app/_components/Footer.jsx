@@ -55,9 +55,25 @@ const Footer = () => {
               </button>
             </div>
             <div className="flex flex-wrap gap-3 opacity-90 text-sm">
-              <span className="hover:underline cursor-pointer">LinkedIn</span>
-              <span className="hover:underline cursor-pointer">Instagram</span>
-              <span className="hover:underline cursor-pointer">Facebook</span>
+              <a
+                href="https://www.linkedin.com/company/oddstone-marketing-services"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                LinkedIn
+              </a>
+              <a
+                href="https://www.instagram.com/oddstone"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                Instagram
+              </a>
+              <a href="#" className="hover:underline">
+                Facebook
+              </a>
             </div>
           </div>
         </div>
