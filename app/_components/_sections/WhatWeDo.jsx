@@ -1,62 +1,93 @@
 "use client";
-import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
+import { useMemo, useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import GetInTouchButton from "../GetInTouchButton";
+import Image from "next/image";
 import { services as servicesData } from "@/app/services/_data";
 import {
-  SearchCheck,
-  Sparkle,
-  BadgeCheck,
-  MonitorSmartphone,
   CheckCircle2,
   ChevronLeft,
   ChevronRight,
   ArrowRight,
 } from "lucide-react";
-import MagicCard from "../MagicCard";
 
-const iconMap = { SearchCheck, Sparkle, BadgeCheck, MonitorSmartphone };
+// Service images mapping with proper fallbacks
+const serviceImages = [
+  "/services/service-img1.png",
+  "/services/service-img2.png",
+  "/services/service-img3.jpg",
+  "/services/service-img4.jpg",
+];
 
 const WhatWeDo = () => {
+  // Check for reduced motion preference
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   const items = useMemo(
     () =>
-      servicesData.map((s) => ({
+      servicesData.map((s, index) => ({
         id: s.id,
         title: s.title,
         kicker: s.heroKicker,
         description: s.shortDescription,
-        highlights: s.highlights.slice(0, 4),
-        Icon: iconMap[s.icon] || SearchCheck,
+        highlights: s.highlights.slice(0, 3),
+        image: serviceImages[index % serviceImages.length],
       })),
     []
   );
 
   const [page, setPage] = useState(0);
-  const pageSize = 2;
-  const totalPages = Math.ceil(items.length / pageSize);
+  const [pageSize, setPageSize] = useState(2);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const update = () => setPageSize(mq.matches ? 2 : 1);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  const totalPages = Math.ceil(items.length / pageSize) || 1;
   const visible = items.slice(page * pageSize, page * pageSize + pageSize);
+
+  useEffect(() => {
+    if (page > totalPages - 1) setPage(0);
+  }, [pageSize, totalPages, page]);
 
   const goPrev = () => setPage((p) => (p - 1 + totalPages) % totalPages);
   const goNext = () => setPage((p) => (p + 1) % totalPages);
 
+  const carouselVariants = {
+    enter: { opacity: 0, scale: 0.98 },
+    center: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0.98, position: "absolute", width: "100%" },
+  };
+
   return (
-    <section className="w-full bg-white py-20 lg:py-20 overflow-hidden">
+    <section
+      className="w-full bg-white py-10 lg:py-20 overflow-hidden"
+      aria-labelledby="services-heading"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: prefersReducedMotion ? 0.2 : 0.8 }}
           viewport={{ once: true }}
           className="text-center mb-12 lg:mb-16"
         >
-          <h2 className="text-5xl lg:text-6xl font-black text-gray-900 mb-6">
+          <h2
+            id="services-heading"
+            className="text-3xl lg:text-6xl font-black text-gray-900 mb-6"
+          >
             Our Marketing
             <br />
-            <span className="text-blue-500 relative inline-block">
+            <span className="text-blue-500 lg:mt-2 relative inline-block">
               Services
               <svg
-                className="absolute pointer-events-none lg:-left-1 -left-5 lg:top-12 top-9 lg:-right-45 -right-5 lg:bottom-0"
+                className="absolute pointer-events-none lg:-left-1 -left-5 lg:top-12 top-5 lg:-right-45 -right-5 lg:bottom-0 lg:w-full w-40"
                 height="45"
                 width="250"
                 viewBox="0 0 666 42"
@@ -71,98 +102,182 @@ const WhatWeDo = () => {
               </svg>
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-md lg:text-xl text-gray-600 max-w-2xl mx-auto">
             Get the oars in the water and start rowing. Execution is the single
             biggest factor in achievement, the quicker you will get to the
             goals!
           </p>
         </motion.div>
 
-        {/* Top bar with Show All Services */}
-        <div className="flex items-center justify-end mb-6">
-          <GetInTouchButton
-            href="/services"
-            label="View All Services"
-            icon={ArrowRight}
-            buttonStyle="relative inline-block px-4 py-2 border border-black cursor-pointer rounded-full text-black overflow-hidden font-medium transition-colors duration-300 hover:text-white"
-          />
-        </div>
+        {/* Removed top-right View All Services button as requested */}
 
-        {/* Carousel */}
-        <div className="relative">
-          <div className="absolute -left-6 sm:-left-8 md:-left-10 top-1/2 -translate-y-1/2 z-10">
-            <button
-              aria-label="Previous"
-              onClick={goPrev}
-              className="cursor-pointer inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-          </div>
-          <div className="absolute -right-6 sm:-right-8 md:-right-10 top-1/2 -translate-y-1/2 z-10">
-            <button
-              aria-label="Next"
-              onClick={goNext}
-              className="cursor-pointer inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
+        {/* Modern Service Cards */}
+        <div
+          className="relative"
+          role="region"
+          aria-labelledby="services-carousel-heading"
+        >
+          <h3 id="services-carousel-heading" className="sr-only">
+            Service offerings carousel
+          </h3>
+          <div className="relative">
+            <AnimatePresence initial={false}>
+              <motion.div
+                key={page}
+                variants={carouselVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  type: "tween",
+                  duration: prefersReducedMotion ? 0.15 : 0.28,
+                  ease: "easeOut",
+                }}
+                className="grid grid-cols-1 lg:grid-cols-2 items-stretch gap-5 sm:gap-6 lg:gap-8"
+                role="tabpanel"
+                aria-labelledby="services-carousel-heading"
+                aria-live="polite"
+              >
+                {visible.map((service, index) => (
+                  <motion.div
+                    key={service.id}
+                    initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: prefersReducedMotion ? 0.2 : 0.6,
+                      delay: prefersReducedMotion ? 0 : index * 0.1,
+                    }}
+                    className="group relative h-full"
+                  >
+                    {/* Modern Card Design (cleaner, lighter) */}
+                    <div className="relative overflow-hidden rounded-2xl bg-white border border-gray-200 shadow-sm transition-shadow duration-300 hover:shadow-lg h-full flex flex-col">
+                      {/* Image Header with Gradient Overlay */}
+                      <div className="relative h-40 sm:h-44 lg:h-48 overflow-hidden rounded-t-2xl">
+                        <Image
+                          src={service.image}
+                          alt={service.title}
+                          fill
+                          className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          priority={false}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-b from-blue-600/30 to-blue-600/0"></div>
 
-          <div className="overflow-hidden">
-            <motion.div
-              key={page}
-              initial={{ x: 40, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-6"
-            >
-              {visible.map((s) => (
-                <MagicCard key={s.id} className="rounded-3xl">
-                  <div className="rounded-3xl border border-gray-200 bg-white p-6 sm:p-7 shadow-sm">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center">
-                        <s.Icon className="w-6 h-6 text-blue-600" />
+                        {/* Floating icon removed as requested */}
+
+                        {/* Subtle divider at bottom of image */}
+                        <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white to-transparent"></div>
                       </div>
-                      <div>
-                        <p className="text-sm text-gray-500 font-semibold">
-                          {s.kicker}
-                        </p>
-                        <h3 className="text-xl font-bold text-black leading-tight">
-                          {s.title}
-                        </h3>
-                      </div>
-                    </div>
 
-                    <p className="mt-4 text-gray-700 text-sm sm:text-base">
-                      {s.description}
-                    </p>
+                      {/* Card Content */}
+                      <div className="relative p-6 sm:p-8 flex flex-col grow">
+                        {/* Header */}
+                        <div className="mb-6">
+                          <div className="flex items-center gap-2 mb-3">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">
+                              {service.kicker}
+                            </span>
+                          </div>
+                          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
+                            {service.title}
+                          </h3>
+                          <p className="text-gray-600 leading-relaxed">
+                            {service.description}
+                          </p>
+                        </div>
 
-                    <ul className="mt-4 space-y-2">
-                      {s.highlights.map((h) => (
-                        <li
-                          key={h}
-                          className="flex items-start gap-2 text-gray-800 text-sm"
+                        {/* Features List */}
+                        <div className="mb-8">
+                          <div className="grid gap-3">
+                            {service.highlights.map((highlight, idx) => (
+                              <div
+                                key={highlight}
+                                className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors duration-300 group/item"
+                              >
+                                <div className="flex-shrink-0 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                                  <CheckCircle2 className="w-4 h-4 text-white" />
+                                </div>
+                                <span className="text-sm font-medium text-gray-700 group-hover/item:text-blue-700 transition-colors duration-300">
+                                  {highlight}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* CTA Button */}
+                        <Link
+                          href={`/services/${service.id}`}
+                          className="relative w-full inline-flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-colors duration-300 shadow-sm hover:shadow-md mt-auto"
                         >
-                          <CheckCircle2 className="w-4 h-4 text-blue-600 mt-0.5" />
-                          <span>{h}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className="mt-6">
-                      <Link
-                        href={`/services/${s.id}`}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 text-gray-900 hover:border-blue-400 hover:text-blue-600 transition-colors cursor-pointer"
-                      >
-                        Learn More About {s.kicker}
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
+                          <span className="text-sm sm:text-base">
+                            Learn More
+                          </span>
+                          <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                        </Link>
+                      </div>
                     </div>
-                  </div>
-                </MagicCard>
-              ))}
-            </motion.div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Enhanced Navigation */}
+          <div
+            className="mt-8 flex items-center justify-center gap-4"
+            role="navigation"
+            aria-label="Services carousel navigation"
+          >
+            <button
+              aria-label={`Previous page of services (currently showing page ${
+                page + 1
+              } of ${totalPages})`}
+              onClick={goPrev}
+              className="group inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-white border border-gray-200 hover:border-blue-300 text-gray-700 hover:text-blue-600 shadow-sm hover:shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+              disabled={totalPages <= 1}
+              aria-describedby="carousel-instructions"
+            >
+              <ChevronLeft className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-0.5" />
+            </button>
+
+            <span className="sr-only" id="carousel-instructions">
+              Use the navigation buttons to browse through our {items.length}{" "}
+              marketing services. Currently showing {visible.length} service
+              {visible.length === 1 ? "" : "s"} on page {page + 1} of{" "}
+              {totalPages}.
+            </span>
+
+            {/* Page Indicators */}
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
+                {Array.from({ length: totalPages }, (_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setPage(i)}
+                    aria-label={`Go to page ${i + 1}`}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      i === page
+                        ? "bg-blue-500 shadow-lg shadow-blue-500/50 scale-125"
+                        : "bg-gray-300 hover:bg-gray-400 hover:scale-110"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <button
+              aria-label={`Next page of services (currently showing page ${
+                page + 1
+              } of ${totalPages})`}
+              onClick={goNext}
+              className="group inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-white border border-gray-200 hover:border-blue-300 text-gray-700 hover:text-blue-600 shadow-sm hover:shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+              disabled={totalPages <= 1}
+              aria-describedby="carousel-instructions"
+            >
+              <ChevronRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" />
+            </button>
           </div>
         </div>
       </div>

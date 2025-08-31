@@ -57,8 +57,7 @@ const desktopLinkClass =
   "hover:text-blue-600 transition-colors duration-300 font-medium text-xl text-black " +
   baseUnderlineClasses;
 const mobileLinkClass =
-  "hover:text-blue-600 transition-colors duration-300 font-semibold text-2xl text-black " +
-  baseUnderlineClasses;
+  "hover:text-blue-600 transition-colors duration-300 font-semibold text-2xl text-black px-5 py-2 rounded-xl bg-white/60 backdrop-blur border border-gray-200 shadow-sm hover:shadow-md";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -187,7 +186,7 @@ const Navbar = () => {
               ))}
               <GetInTouchButton
                 href="/get-audit"
-                buttonStyle="relative inline-block px-4 py-2 border border-black cursor-pointer rounded-full text-black overflow-hidden font-medium transition-colors duration-300 hover:text-white"
+                buttonStyle="relative inline-block px-4 py-2 border border-black cursor-pointer rounded-xl text-black overflow-hidden font-medium transition-colors duration-300 hover:text-white"
               />
             </motion.div>
 
@@ -231,7 +230,7 @@ const Navbar = () => {
               <motion.div variants={linkVariants} className="pt-3">
                 <GetInTouchButton
                   href="/get-audit"
-                  buttonStyle="relative inline-block px-6 py-3 border border-black cursor-pointer rounded-full text-black overflow-hidden font-medium transition-colors duration-300 hover:bg-black hover:text-white"
+                  buttonStyle="relative inline-block px-6 py-3 border border-black cursor-pointer rounded-xl text-black overflow-hidden font-medium transition-colors duration-300 hover:text-white"
                 />
               </motion.div>
             </motion.div>

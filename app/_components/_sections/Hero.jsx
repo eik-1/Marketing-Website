@@ -6,28 +6,35 @@ import StarSvg from "../StarSvg";
 import HeroIllustration from "../HeroIllustration";
 
 const Hero = () => {
+  // Check for reduced motion preference
+  const prefersReducedMotion = 
+    typeof window !== "undefined" && 
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   // Simplified animation variants for major sections only
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2,
-      },
+      transition: prefersReducedMotion 
+        ? { duration: 0.2 }
+        : {
+            staggerChildren: 0.3,
+            delayChildren: 0.2,
+          },
     },
   };
 
   const slideInFromLeft = {
     hidden: {
       opacity: 0,
-      x: -50,
+      x: prefersReducedMotion ? 0 : -50,
     },
     visible: {
       opacity: 1,
       x: 0,
       transition: {
-        duration: 0.8,
+        duration: prefersReducedMotion ? 0.2 : 0.8,
         ease: "easeOut",
       },
     },
@@ -36,13 +43,13 @@ const Hero = () => {
   const slideInFromRight = {
     hidden: {
       opacity: 0,
-      x: 50,
+      x: prefersReducedMotion ? 0 : 50,
     },
     visible: {
       opacity: 1,
       x: 0,
       transition: {
-        duration: 0.8,
+        duration: prefersReducedMotion ? 0.2 : 0.8,
         ease: "easeOut",
       },
     },
@@ -69,23 +76,35 @@ const Hero = () => {
             <motion.path
               d="M0,515 A551,551 0 0,1 1102,515 L1102,515 L0,515 Z"
               fill="#E6F3FF"
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+              transition={{ 
+                duration: prefersReducedMotion ? 0.2 : 1, 
+                delay: prefersReducedMotion ? 0 : 0.5, 
+                ease: "easeOut" 
+              }}
             />
             <motion.path
               d="M151,515 A400,400 0 0,1 951,515 L951,515 L151,515 Z"
               fill="#CCE7FF"
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.7, ease: "easeOut" }}
+              transition={{ 
+                duration: prefersReducedMotion ? 0.2 : 1, 
+                delay: prefersReducedMotion ? 0 : 0.7, 
+                ease: "easeOut" 
+              }}
             />
             <motion.path
               d="M301,515 A250,250 0 0,1 801,515 L801,515 L301,515 Z"
               fill="#99D6FF"
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.9, ease: "easeOut" }}
+              transition={{ 
+                duration: prefersReducedMotion ? 0.2 : 1, 
+                delay: prefersReducedMotion ? 0 : 0.9, 
+                ease: "easeOut" 
+              }}
             />
           </svg>
         </div>
@@ -94,7 +113,7 @@ const Hero = () => {
           className="flex flex-col lg:gap-4 gap-8 lg:w-1/2 w-full mb-16 lg:mb-0 relative z-10"
           variants={slideInFromLeft}
         >
-          <h1 className="lg:text-[4rem] text-[2.75rem] font-black flex flex-wrap text-black leading-tight flex-col lg:text-left text-center">
+          <h1 className="lg:text-7xl md:text-6xl text-5xl font-black flex flex-wrap text-black leading-tight flex-col lg:text-left text-center">
             <span>
               Marketing that feels like a{" "}
               <span className="text-blue-500 relative inline-block">
@@ -110,11 +129,11 @@ const Hero = () => {
                     stroke="#3b82f6"
                     strokeWidth="3"
                     fill="none"
-                    initial={{ pathLength: 0 }}
+                    initial={{ pathLength: prefersReducedMotion ? 1 : 0 }}
                     animate={{ pathLength: 1 }}
                     transition={{
-                      duration: 1.5,
-                      delay: 1.2,
+                      duration: prefersReducedMotion ? 0.2 : 1.5,
+                      delay: prefersReducedMotion ? 0 : 1.2,
                       ease: "easeInOut",
                     }}
                   />
@@ -131,11 +150,11 @@ const Hero = () => {
                     stroke="#3b82f6"
                     strokeWidth="5"
                     fill="none"
-                    initial={{ pathLength: 0 }}
+                    initial={{ pathLength: prefersReducedMotion ? 1 : 0 }}
                     animate={{ pathLength: 1 }}
                     transition={{
-                      duration: 1.5,
-                      delay: 1.2,
+                      duration: prefersReducedMotion ? 0.2 : 1.5,
+                      delay: prefersReducedMotion ? 0 : 1.2,
                       ease: "easeInOut",
                     }}
                   />

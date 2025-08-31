@@ -35,17 +35,27 @@ const VideoSection = ({ videoSrc }) => {
     setIsLoaded(true);
   };
 
+  // Auto play only when in viewport for better performance
   useEffect(() => {
-    const playVideo = async () => {
-      try {
-        if (videoRef.current) {
-          await videoRef.current.play();
+    if (!videoRef.current) return;
+    const node = videoRef.current;
+    const observer = new IntersectionObserver(
+      async ([entry]) => {
+        try {
+          if (!node) return;
+          if (entry.isIntersecting) {
+            await node.play();
+          } else {
+            node.pause();
+          }
+        } catch (e) {
+          // ignore autoplay errors
         }
-      } catch (error) {
-        console.error("Autoplay failed:", error);
-      }
-    };
-    playVideo();
+      },
+      { threshold: 0.25 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
   }, []);
 
   return (

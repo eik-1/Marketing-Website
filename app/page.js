@@ -1,17 +1,43 @@
 "use client";
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 
 import Navbar from "@/app/_components/Navbar";
 import Hero from "./_components/_sections/Hero";
 import Footer from "./_components/Footer";
-import VideoSection from "./_components/_sections/VideoSection";
 import TrustedBy from "./_components/_sections/TrustedBy";
 import WhatWeDo from "./_components/_sections/WhatWeDo";
 import AboutUs from "./_components/_sections/AboutUs";
-import ScrollingText from "./_components/_sections/ScrollingText";
-import WhyChooseUs from "./_components/_sections/WhyChoose";
-import Testimonials from "./_components/_sections/Testimonials";
-import ContactUs from "./_components/_sections/ContactUs";
+
+// Lazy-load below-the-fold sections to reduce initial JS
+const VideoSection = dynamic(
+  () => import("./_components/_sections/VideoSection"),
+  {
+    ssr: false,
+    loading: () => null,
+  }
+);
+const ScrollingText = dynamic(
+  () => import("./_components/_sections/ScrollingText"),
+  {
+    loading: () => null,
+  }
+);
+const WhyChooseUs = dynamic(() => import("./_components/_sections/WhyChoose"), {
+  loading: () => null,
+});
+const Testimonials = dynamic(
+  () => import("./_components/_sections/Testimonials"),
+  {
+    loading: () => null,
+  }
+);
+const ContactUs = dynamic(() => import("./_components/_sections/ContactUs"), {
+  loading: () => null,
+});
+const FAQ = dynamic(() => import("./_components/_sections/FAQ"), {
+  loading: () => null,
+});
 
 export default function Home() {
   return (
@@ -26,6 +52,7 @@ export default function Home() {
         <ScrollingText />
         <WhyChooseUs />
         <Testimonials />
+        <FAQ />
         <ContactUs />
       </div>
 

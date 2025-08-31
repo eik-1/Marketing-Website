@@ -9,6 +9,11 @@ import StackingCards, { StackingCardItem } from "../StackingCard";
 const Testimonials = () => {
   const [container, setContainer] = useState(null);
 
+  // Check for reduced motion preference
+  const prefersReducedMotion = 
+    typeof window !== "undefined" && 
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   const testimonials = [
     {
       id: 1,
@@ -60,20 +65,22 @@ const Testimonials = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        duration: 0.6,
-        staggerChildren: 0.3,
-      },
+      transition: prefersReducedMotion 
+        ? { duration: 0.2 }
+        : {
+            duration: 0.6,
+            staggerChildren: 0.3,
+          },
     },
   };
 
   const titleVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: prefersReducedMotion ? 0.2 : 0.6,
         ease: "easeOut",
       },
     },
@@ -82,7 +89,7 @@ const Testimonials = () => {
   return (
     <section
       id="testimonials"
-      className="w-full py-12 lg:py-24 mt-5 overflow-hidden"
+      className="w-full py-10 lg:py-24 mt-5 overflow-hidden"
     >
       <motion.div
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
@@ -91,15 +98,18 @@ const Testimonials = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        <div className="flex flex-col items-start justify-center gap-5 lg:gap-12">
+        <div className="flex flex-col items-start justify-center gap-10 lg:gap-5">
           <motion.div
-            className="flex flex-col justify-center gap-0 mb-10 lg:mb-0"
+            className="flex flex-col justify-center gap-0 mb-10 lg:mb-0 px-4 lg:px-0 text-center lg:text-left"
             variants={titleVariants}
           >
-            <h1 className="text-[2rem] md:text-5xl lg:text-6xl font-black text-black leading-tight">
+            <motion.div className="inline-block px-4 py-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-full text-sm font-medium w-fit mb-4 mx-auto lg:mx-0">
+              [ TESTIMONIALS ]
+            </motion.div>
+            <h1 className="text-3xl lg:text-6xl font-black text-black leading-tight">
               Read What Our Clients
             </h1>
-            <h1 className="text-[2rem] md:text-5xl lg:text-6xl font-black text-black leading-tight">
+            <h1 className="text-3xl lg:text-6xl font-black text-black leading-tight">
               Say About Our Work
             </h1>
           </motion.div>
@@ -166,7 +176,13 @@ const Testimonials = () => {
                 msOverflowStyle: "none" /* Internet Explorer 10+ */,
               }}
               ref={(node) => setContainer(node)}
+              role="region"
+              aria-label="Client testimonials carousel"
+              aria-describedby="testimonials-description"
             >
+              <div id="testimonials-description" className="sr-only">
+                Scroll through testimonials from our clients. Contains {testimonials.length} testimonials with ratings and company information.
+              </div>
               <StackingCards
                 totalCards={testimonials.length}
                 scrollOptions={{ container: { current: container } }}
@@ -180,6 +196,8 @@ const Testimonials = () => {
                   >
                     <div
                       className={`${testimonial.bgColor} w-full h-[90%] flex flex-col justify-between p-6 lg:p-8 rounded-2xl text-black relative overflow-hidden mt-4 lg:mt-4 border-2 border-blue-500`}
+                      role="article"
+                      aria-label={`Testimonial ${index + 1} of ${testimonials.length} from ${testimonial.name} at ${testimonial.company}`}
                     >
                       {/* Background decoration */}
                       <div className="absolute top-4 right-4 opacity-20">
@@ -194,11 +212,12 @@ const Testimonials = () => {
                       </div>
 
                       {/* Stars */}
-                      <div className="flex mb-3 lg:mb-4">
+                      <div className="flex mb-3 lg:mb-4" role="img" aria-label={`${testimonial.rating} out of 5 stars`}>
                         {[...Array(testimonial.rating)].map((_, i) => (
                           <Star
                             key={i}
                             className="w-4 lg:w-5 h-4 lg:h-5 text-blue-500 fill-current"
+                            aria-hidden="true"
                           />
                         ))}
                       </div>
