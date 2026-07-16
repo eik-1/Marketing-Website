@@ -79,7 +79,7 @@ const AboutHero = () => {
             {/* Main image */}
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
               <Image
-                src="/about-img2.jpg"
+                src="/about_us2.jpeg"
                 alt="The Oddstone team at work"
                 fill
                 className="object-cover"

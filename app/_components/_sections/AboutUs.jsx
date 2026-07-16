@@ -66,8 +66,8 @@ const AboutUs = () => {
               >
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Image
-                    src="/about-img2.jpg"
-                    alt="About Us"
+                    src="/about_us2.jpeg"
+                    alt="The Oddstone team together on a call with a remote teammate"
                     fill
                     className="object-cover"
                   />

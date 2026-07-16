@@ -103,8 +103,8 @@ const OurStory = () => {
         {/* Image side */}
         <div className="relative min-h-[350px] sm:min-h-[450px] lg:min-h-[600px] order-2 lg:order-1">
           <Image
-            src="/about-img.jpg"
-            alt="The Oddstone team collaborating"
+            src="/about_us1.jpeg"
+            alt="An Oddstone working session reviewing campaign plans together"
             fill
             className="object-cover"
           />
@@ -172,6 +172,27 @@ const OurStory = () => {
                 "Oddstone works as an extension of your team, bringing clarity, structure,
                 and precision to digital growth."
               </p>
+            </div>
+
+            {/* Meta certifications */}
+            <div className="mt-10 pt-8 border-t border-gray-100">
+              <span className="block text-xs font-semibold uppercase tracking-widest text-gray-400 mb-5">
+                Certified expertise
+              </span>
+              <div className="flex items-center gap-5 sm:gap-7">
+                <Image
+                  src="/meta1.jpeg"
+                  alt="Meta Certified Media Buying Professional badge"
+                  width={104}
+                  height={104}
+                />
+                <Image
+                  src="/meta2.jpeg"
+                  alt="Meta Certified Media Planning Professional badge"
+                  width={114}
+                  height={114}
+                />
+              </div>
             </div>
           </div>
         </motion.div>
