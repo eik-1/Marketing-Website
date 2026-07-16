@@ -103,8 +103,8 @@ const OurStory = () => {
         {/* Image side */}
         <div className="relative min-h-[350px] sm:min-h-[450px] lg:min-h-[600px] order-2 lg:order-1">
           <Image
-            src="/founder.jpg"
-            alt="Oddstone founder"
+            src="/about-img.jpg"
+            alt="The Oddstone team collaborating"
             fill
             className="object-cover"
           />

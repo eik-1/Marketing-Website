@@ -1,3 +1,5 @@
+import { contact } from "@/lib/contact";
+
 const Footer = () => {
   return (
     <div className="sticky bottom-0 left-0 w-full bg-blue-500">
@@ -24,14 +26,20 @@ const Footer = () => {
               Office
             </h3>
             <div className="space-y-2 opacity-90 text-sm sm:text-base">
-              <p>contact@oddstone.co.uk</p>
-              <p>+1 (555) 123-4567</p>
+              <p>
+                <a href={`mailto:${contact.email}`} className="hover:underline">
+                  {contact.email}
+                </a>
+              </p>
+              <p>
+                <a href={contact.phoneHref} className="hover:underline">
+                  {contact.phone}
+                </a>
+              </p>
               <p className="max-w-[14rem] sm:max-w-[16rem]">
-                123 Marketing Street
+                {contact.location}
                 <br />
-                Digital District
-                <br />
-                Innovation City, IC 12345
+                {contact.locationDetail}
               </p>
             </div>
           </div>

@@ -21,8 +21,6 @@ const Testimonials = () => {
       name: "Simon Mitchell",
       company: "Green Laurels",
       rating: 5,
-      avatar:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
       bgColor: "bg-white",
     },
     {
@@ -32,8 +30,6 @@ const Testimonials = () => {
       name: "Emma Carter",
       company: "Colets Health & Fitness",
       rating: 5,
-      avatar:
-        "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
       bgColor: "bg-blue-200",
     },
     {
@@ -43,8 +39,6 @@ const Testimonials = () => {
       name: "Helen Locke",
       company: "Paradise Boutique",
       rating: 4,
-      avatar:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
       bgColor: "bg-white",
     },
     {
@@ -54,8 +48,6 @@ const Testimonials = () => {
       name: "Thomas Grant",
       company: "Balance Physio & Wellness",
       rating: 5,
-      avatar:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
       bgColor: "bg-blue-200",
     },
   ];

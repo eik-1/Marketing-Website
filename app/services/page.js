@@ -10,20 +10,13 @@ import { CheckCircle2, ArrowRight } from "lucide-react";
 import FAQ from "@/app/_components/_sections/FAQ";
 
 // Mirror landing page card content
-const serviceImages = [
-  "/services/service-img1.png",
-  "/services/service-img2.png",
-  "/services/service-img3.jpg",
-  "/services/service-img4.jpg",
-];
-
-const services = servicesData.map((s, index) => ({
+const services = servicesData.map((s) => ({
   id: s.id,
   title: s.title,
   kicker: s.heroKicker,
   description: s.shortDescription,
   highlights: s.highlights.slice(0, 3),
-  image: serviceImages[index % serviceImages.length],
+  image: s.image,
 }));
 
 export default function ServicesPage() {

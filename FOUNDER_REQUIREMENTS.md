@@ -74,23 +74,23 @@ Create a case studies landing page showcasing all three case studies.
 ## Homepage Changes
 
 ### Video Section
-- [ ] Change homepage video (awaiting updated video from founder)
+- [ ] Change homepage video (awaiting updated video from founder — swap the `videoSrc` prop in `app/page.js` when received)
 
 ### About Us Section
-- [ ] Remove "20+ businesses"
-- [ ] Remove "100% customer satisfaction"
-- [ ] Replace with: "Global expertise across luxury, e-commerce, and high-intent lead generation."
+- [x] Remove "20+ businesses"
+- [x] Remove "100% customer satisfaction"
+- [x] Replace with: "Global expertise across luxury, e-commerce, and high-intent lead generation."
 
 ### Services Section
-- [ ] Rename: "Pay-Per-Click (PPC) Advertising" → "Brand & Performance Marketing"
-- [ ] Update background image for Brand & Performance Marketing section (current image incorrectly represents SEO)
+- [x] Rename: "Pay-Per-Click (PPC) Advertising" → "Brand & Performance Marketing"
+- [x] Update background image for Brand & Performance Marketing section (current image incorrectly represents SEO)
 
 ### Testimonials Section
-- [ ] Remove client testimonial images (keep text only or replace later)
+- [x] Remove client testimonial images (keep text only or replace later)
 
 ### Contact Info
-- [ ] Update phone number (awaiting new number)
-- [ ] Update address (awaiting new address)
+- [ ] Update phone number (awaiting new number — update `lib/contact.js` when received)
+- [ ] Update address (awaiting new address — update `lib/contact.js` when received; footer placeholder US address removed in the meantime)
 
 ---
 

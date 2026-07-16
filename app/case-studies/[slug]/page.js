@@ -8,8 +8,9 @@ export async function generateStaticParams() {
   return getAllCaseStudyIds().map((id) => ({ slug: id }));
 }
 
-export function generateMetadata({ params }) {
-  const study = getCaseStudyBySlug(params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const study = getCaseStudyBySlug(slug);
   if (!study) {
     return {
       title: "Case Study | Oddstone Marketing",
@@ -18,11 +19,11 @@ export function generateMetadata({ params }) {
   return {
     title: `${study.title} Case Study | Oddstone Marketing`,
     description: study.subtitle,
-    alternates: { canonical: `/case-studies/${params.slug}` },
+    alternates: { canonical: `/case-studies/${slug}` },
     openGraph: {
       title: `${study.title} Case Study | Oddstone Marketing`,
       description: study.subtitle,
-      url: `/case-studies/${params.slug}`,
+      url: `/case-studies/${slug}`,
       type: "article",
     },
     twitter: {
@@ -33,8 +34,9 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function CaseStudyPage({ params }) {
-  const study = getCaseStudyBySlug(params.slug);
+export default async function CaseStudyPage({ params }) {
+  const { slug } = await params;
+  const study = getCaseStudyBySlug(slug);
 
   if (!study) {
     return (
@@ -93,7 +95,7 @@ export default function CaseStudyPage({ params }) {
                   "@type": "ListItem",
                   position: 3,
                   name: study.title,
-                  item: `https://oddstone.co.uk/case-studies/${params.slug}`,
+                  item: `https://oddstone.co.uk/case-studies/${slug}`,
                 },
               ],
             }),

@@ -11,14 +11,6 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-// Service images mapping with proper fallbacks
-const serviceImages = [
-  "/services/service-img1.png",
-  "/services/service-img2.png",
-  "/services/service-img3.jpg",
-  "/services/service-img4.jpg",
-];
-
 const WhatWeDo = () => {
   // Check for reduced motion preference
   const prefersReducedMotion =
@@ -27,13 +19,13 @@ const WhatWeDo = () => {
 
   const items = useMemo(
     () =>
-      servicesData.map((s, index) => ({
+      servicesData.map((s) => ({
         id: s.id,
         title: s.title,
         kicker: s.heroKicker,
         description: s.shortDescription,
         highlights: s.highlights.slice(0, 3),
-        image: serviceImages[index % serviceImages.length],
+        image: s.image,
       })),
     []
   );

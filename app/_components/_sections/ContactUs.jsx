@@ -10,6 +10,7 @@ import {
   CheckCircle2,
   AlertTriangle,
 } from "lucide-react";
+import { contact } from "@/lib/contact";
 
 const initialForm = {
   name: "",
@@ -107,31 +108,29 @@ const ContactUs = () => {
 
               <div className="space-y-4 text-white">
                 <a
-                  href="mailto:contact@oddstone.co.uk"
+                  href={`mailto:${contact.email}`}
                   className="flex items-center gap-3 p-3 rounded-xl hover:bg-blue-400 transition-colors "
                 >
                   <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white text-blue-600">
                     <Mail />
                   </span>
                   <div>
-                    <div className="font-semibold">contact@oddstone.co.uk</div>
+                    <div className="font-semibold">{contact.email}</div>
                     <div className="text-sm text-white/80">
                       Email us anytime
                     </div>
                   </div>
                 </a>
                 <a
-                  href="tel:+442012345678"
+                  href={contact.phoneHref}
                   className="flex items-center gap-3 p-3 rounded-xl hover:bg-blue-400 transition-colors"
                 >
                   <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white text-blue-600">
                     <Phone />
                   </span>
                   <div>
-                    <div className="font-semibold">+44 20 1234 5678</div>
-                    <div className="text-sm text-white/80">
-                      Mon–Fri, 9am–6pm (UK)
-                    </div>
+                    <div className="font-semibold">{contact.phone}</div>
+                    <div className="text-sm text-white/80">{contact.hours}</div>
                   </div>
                 </a>
                 <div className="flex items-center gap-3 p-3 rounded-xl">
@@ -139,11 +138,9 @@ const ContactUs = () => {
                     <MapPin />
                   </span>
                   <div>
-                    <div className="font-semibold">
-                      London • Surrey • Remote UK
-                    </div>
+                    <div className="font-semibold">{contact.location}</div>
                     <div className="text-sm text-white/80">
-                      Based in the UK, working globally
+                      {contact.locationDetail}
                     </div>
                   </div>
                 </div>
@@ -305,7 +302,7 @@ const ContactUs = () => {
                 </h3>
                 <p className="mt-2 text-gray-600 max-w-md">
                   We’ll be in touch within 24 hours. If it’s urgent, email us at{" "}
-                  <span className="font-semibold">contact@oddstone.co.uk</span>.
+                  <span className="font-semibold">{contact.email}</span>.
                 </p>
                 <button
                   type="button"

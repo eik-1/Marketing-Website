@@ -24,22 +24,55 @@ export default function CaseStudyContent({ study }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
+            {/* Breadcrumbs */}
+            <nav aria-label="Breadcrumb" className="mb-8">
+              <ol className="flex flex-wrap items-center gap-2 text-sm text-gray-400">
+                <li>
+                  <Link
+                    href="/"
+                    className="hover:text-black transition-colors"
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li aria-hidden="true">/</li>
+                <li>
+                  <Link
+                    href="/case-studies"
+                    className="hover:text-black transition-colors"
+                  >
+                    Case Studies
+                  </Link>
+                </li>
+                <li aria-hidden="true">/</li>
+                <li aria-current="page" className="text-black font-medium">
+                  {study.title}
+                </li>
+              </ol>
+            </nav>
+
             {/* Eyebrow */}
-            <div className="flex items-center gap-4 mb-8">
-              <Link
-                href="/case-studies"
-                className="text-sm text-gray-400 hover:text-black transition-colors"
-              >
-                Case Studies
-              </Link>
-              <span className="w-8 h-px bg-gray-300" />
-              <span className="text-sm text-gray-400">{study.industry}</span>
+            <div className="flex items-center gap-4 mb-6">
+              <span className="text-sm uppercase tracking-widest text-blue-600 font-semibold">
+                {study.industry}
+              </span>
             </div>
 
             {/* Title */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-black leading-[1.05] tracking-tight max-w-4xl">
               {study.subtitle}
             </h1>
+
+            {/* Top CTA */}
+            <div className="mt-10">
+              <Link
+                href="/get-audit"
+                className="inline-flex items-center gap-2 bg-black text-white font-semibold px-6 py-3 rounded-full hover:bg-blue-600 transition-colors"
+              >
+                {study.cta.button}
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
           </motion.div>
         </div>
       </header>
