@@ -10,7 +10,10 @@ export default function CaseStudyContent({ study }) {
 
   const formatResult = (result) => {
     if (result.before && result.after) return `${result.before} → ${result.after}`;
-    if (result.change) return result.direction === "down" ? `↓${result.change}` : `↑${result.change}`;
+    if (result.change) {
+      const value = result.change.replace("~", "");
+      return result.direction === "down" ? `↓${value}` : `↑${value}`;
+    }
     return result.value;
   };
 
@@ -24,36 +27,38 @@ export default function CaseStudyContent({ study }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {/* Breadcrumbs */}
-            <nav aria-label="Breadcrumb" className="mb-8">
-              <ol className="flex flex-wrap items-center gap-2 text-sm text-gray-400">
-                <li>
-                  <Link
-                    href="/"
-                    className="hover:text-black transition-colors"
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li aria-hidden="true">/</li>
-                <li>
-                  <Link
-                    href="/case-studies"
-                    className="hover:text-black transition-colors"
-                  >
-                    Case Studies
-                  </Link>
-                </li>
-                <li aria-hidden="true">/</li>
-                <li aria-current="page" className="text-black font-medium">
-                  {study.title}
-                </li>
-              </ol>
-            </nav>
-
-            {/* Eyebrow */}
-            <div className="flex items-center gap-4 mb-6">
-              <span className="text-sm uppercase tracking-widest text-blue-600 font-semibold">
+            {/* Breadcrumbs + industry */}
+            <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3 mb-10">
+              <nav aria-label="Breadcrumb">
+                <ol className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.15em] text-gray-400">
+                  <li>
+                    <Link
+                      href="/"
+                      className="hover:text-black transition-colors"
+                    >
+                      Home
+                    </Link>
+                  </li>
+                  <li aria-hidden="true" className="text-gray-300">
+                    /
+                  </li>
+                  <li>
+                    <Link
+                      href="/case-studies"
+                      className="hover:text-black transition-colors"
+                    >
+                      Case Studies
+                    </Link>
+                  </li>
+                  <li aria-hidden="true" className="text-gray-300">
+                    /
+                  </li>
+                  <li aria-current="page" className="text-black">
+                    {study.title}
+                  </li>
+                </ol>
+              </nav>
+              <span className="text-xs uppercase tracking-[0.15em] text-blue-600 font-semibold">
                 {study.industry}
               </span>
             </div>
@@ -87,7 +92,7 @@ export default function CaseStudyContent({ study }) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 + i * 0.1 }}
-                className={`py-8 sm:py-10 ${i > 0 ? 'border-l border-gray-200' : ''}`}
+                className={`py-8 sm:py-10 ${i % 2 === 1 ? "border-l border-gray-200" : ""} ${i > 0 && i % 2 === 0 ? "md:border-l md:border-gray-200" : ""} ${i >= 2 ? "border-t border-gray-200 md:border-t-0" : ""}`}
               >
                 <div className="px-4 sm:px-6">
                   <div className="text-2xl sm:text-3xl md:text-4xl font-black text-black">
@@ -186,13 +191,22 @@ export default function CaseStudyContent({ study }) {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1 }}
+                      className="flex gap-5"
                     >
-                      <h3 className="text-lg font-bold text-black mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        {item.detail}
-                      </p>
+                      <span
+                        aria-hidden="true"
+                        className="text-sm font-black text-gray-300 pt-1 select-none"
+                      >
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <div>
+                        <h3 className="text-lg font-bold text-black mb-2">
+                          {item.title}
+                        </h3>
+                        <p className="text-gray-600 leading-relaxed">
+                          {item.detail}
+                        </p>
+                      </div>
                     </motion.div>
                   ))}
                 </div>

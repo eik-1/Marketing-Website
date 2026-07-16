@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const AboutUs = () => {
   return (
@@ -41,10 +42,13 @@ const AboutUs = () => {
                 </div>
 
                 {/* CTA Button */}
-                <motion.button className="bg-blue-500 hover:bg-blue-600 text-white font-bold px-8 py-4 rounded-full text-lg transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center gap-3 mb-10 cursor-pointer">
+                <Link
+                  href="/get-audit"
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold px-8 py-4 rounded-full text-lg transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center gap-3 mb-10 cursor-pointer"
+                >
                   Let&apos;s Get Started
                   <ArrowRight />
-                </motion.button>
+                </Link>
 
                 <p className="text-lg text-gray-300 leading-relaxed max-w-md">
                   Global expertise across luxury, e-commerce, and high-intent lead generation.

@@ -53,16 +53,17 @@ export default function CaseStudiesPage() {
                   brands scale revenue, reduce costs, and build sustainable growth.
                 </p>
 
-                <div className="flex items-center gap-8">
-                  <div>
-                    <div className="text-4xl font-black text-black">3</div>
-                    <div className="text-sm text-gray-500">Featured projects</div>
-                  </div>
-                  <div className="w-px h-12 bg-gray-200" />
-                  <div>
-                    <div className="text-4xl font-black text-black">100%</div>
-                    <div className="text-sm text-gray-500">Client retention</div>
-                  </div>
+                <div className="border-t border-gray-200 pt-6 flex flex-wrap items-baseline gap-x-3 gap-y-2">
+                  <span className="font-semibold text-black">
+                    Luxury fashion
+                  </span>
+                  <span className="text-gray-300">/</span>
+                  <span className="font-semibold text-black">Beauty</span>
+                  <span className="text-gray-300">/</span>
+                  <span className="font-semibold text-black">Real estate</span>
+                  <span className="basis-full sm:basis-auto sm:ml-auto text-sm text-gray-500">
+                    India · UAE · UK · Africa
+                  </span>
                 </div>
               </motion.div>
             </div>

@@ -13,7 +13,10 @@ export default function CaseStudyCard({ study, index }) {
 
   const getResultDisplay = (result) => {
     if (result.before && result.after) return result.after;
-    if (result.change) return result.direction === "down" ? `-${result.change}` : `+${result.change}`;
+    if (result.change) {
+      const value = result.change.replace("~", "");
+      return `${result.direction === "down" ? "↓" : "↑"}${value}`;
+    }
     return result.value;
   };
 

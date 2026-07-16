@@ -129,7 +129,7 @@ const Testimonials = () => {
 
               {/* Description */}
               <p className="text-blue-50 text-base leading-relaxed mt-6">
-                Customers are Satisfied with our Marketing Services.
+                Real feedback from the businesses we work with.
               </p>
             </div>
 
