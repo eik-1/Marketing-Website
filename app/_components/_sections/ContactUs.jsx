@@ -6,6 +6,7 @@ import {
   Mail,
   Phone,
   MapPin,
+  MessageCircle,
   Loader2,
   CheckCircle2,
   AlertTriangle,
@@ -131,6 +132,22 @@ const ContactUs = () => {
                   <div>
                     <div className="font-semibold">{contact.phone}</div>
                     <div className="text-sm text-white/80">{contact.hours}</div>
+                  </div>
+                </a>
+                <a
+                  href={contact.whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-3 rounded-xl hover:bg-blue-400 transition-colors"
+                >
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white text-blue-600">
+                    <MessageCircle />
+                  </span>
+                  <div>
+                    <div className="font-semibold">{contact.whatsapp}</div>
+                    <div className="text-sm text-white/80">
+                      Chat with us on WhatsApp
+                    </div>
                   </div>
                 </a>
                 <div className="flex items-center gap-3 p-3 rounded-xl">

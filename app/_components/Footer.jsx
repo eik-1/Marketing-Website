@@ -36,6 +36,16 @@ const Footer = () => {
                   {contact.phone}
                 </a>
               </p>
+              <p>
+                <a
+                  href={contact.whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  WhatsApp: {contact.whatsapp}
+                </a>
+              </p>
               <p className="max-w-[14rem] sm:max-w-[16rem]">
                 {contact.location}
                 <br />
