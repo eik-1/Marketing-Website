@@ -89,8 +89,8 @@ Create a case studies landing page showcasing all three case studies.
 - [x] Remove client testimonial images (keep text only or replace later)
 
 ### Contact Info
-- [ ] Update phone number (awaiting new number — update `lib/contact.js` when received)
-- [ ] Update address (awaiting new address — update `lib/contact.js` when received; footer placeholder US address removed in the meantime)
+- [x] Placeholder phone number and office address removed from the Footer and Contact section entirely; WhatsApp (+44 7901 184697) and email are the live contact channels
+- [ ] Add real phone number / office address to `lib/contact.js` and reintroduce in the UI if the founder provides them
 
 ---
 

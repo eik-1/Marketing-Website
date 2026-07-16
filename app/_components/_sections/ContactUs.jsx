@@ -4,7 +4,6 @@ import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Mail,
-  Phone,
   MapPin,
   Loader2,
   CheckCircle2,
@@ -128,18 +127,6 @@ const ContactUs = () => {
                   </div>
                 </a>
                 <a
-                  href={contact.phoneHref}
-                  className="flex items-center gap-3 p-3 rounded-xl hover:bg-blue-400 transition-colors"
-                >
-                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white text-blue-600">
-                    <Phone />
-                  </span>
-                  <div>
-                    <div className="font-semibold">{contact.phone}</div>
-                    <div className="text-sm text-white/80">{contact.hours}</div>
-                  </div>
-                </a>
-                <a
                   href={contact.whatsappHref}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -151,7 +138,7 @@ const ContactUs = () => {
                   <div>
                     <div className="font-semibold">{contact.whatsapp}</div>
                     <div className="text-sm text-white/80">
-                      Chat with us on WhatsApp
+                      Chat with us on WhatsApp, {contact.hours}
                     </div>
                   </div>
                 </a>

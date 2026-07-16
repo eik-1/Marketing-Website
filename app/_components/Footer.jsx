@@ -20,20 +20,15 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Contact Information */}
+          {/* Contact */}
           <div className="w-full sm:max-w-sm md:w-auto order-1 md:order-2">
             <h3 className="font-semibold mb-3 sm:mb-4 text-base sm:text-lg">
-              Office
+              Contact
             </h3>
             <div className="space-y-2 opacity-90 text-sm sm:text-base">
               <p>
                 <a href={`mailto:${contact.email}`} className="hover:underline">
                   {contact.email}
-                </a>
-              </p>
-              <p>
-                <a href={contact.phoneHref} className="hover:underline">
-                  {contact.phone}
                 </a>
               </p>
               <p>
@@ -45,11 +40,6 @@ const Footer = () => {
                 >
                   WhatsApp: {contact.whatsapp}
                 </a>
-              </p>
-              <p className="max-w-[14rem] sm:max-w-[16rem]">
-                {contact.location}
-                <br />
-                {contact.locationDetail}
               </p>
             </div>
           </div>
