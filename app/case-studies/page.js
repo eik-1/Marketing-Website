@@ -7,6 +7,7 @@ import { ArrowRight } from "lucide-react";
 import Navbar from "@/app/_components/Navbar";
 import Footer from "@/app/_components/Footer";
 import CaseStudyCard from "./_components/CaseStudyCard";
+import Kicker from "@/app/_components/Kicker";
 import { caseStudies } from "./_data";
 
 export default function CaseStudiesPage() {
@@ -29,9 +30,9 @@ export default function CaseStudiesPage() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="text-blue-600 text-sm uppercase tracking-widest font-semibold mb-4 block"
+                  className="mb-4 block"
                 >
-                  Case Studies
+                  <Kicker>Case Studies</Kicker>
                 </motion.span>
 
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-black leading-[0.9] tracking-tight">
@@ -92,8 +93,8 @@ export default function CaseStudiesPage() {
               transition={{ duration: 0.7 }}
               className="text-center"
             >
-              <span className="text-blue-400 text-sm uppercase tracking-widest font-semibold mb-4 block">
-                Your turn
+              <span className="mb-4 block">
+                <Kicker tone="dark">Your turn</Kicker>
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-6 leading-tight">
                 Ready to become our

@@ -8,6 +8,7 @@ import Link from "next/link";
 import { services as servicesData } from "./_data";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import FAQ from "@/app/_components/_sections/FAQ";
+import Kicker from "@/app/_components/Kicker";
 
 // Mirror landing page card content
 const services = servicesData.map((s) => ({
@@ -48,9 +49,7 @@ export default function ServicesPage() {
               transition={{ duration: 0.7, ease: "easeOut" }}
               className="text-center"
             >
-              <div className="inline-block px-4 py-2 bg-blue-500/10 border border-blue-500/20 text-blue-600 rounded-full text-sm font-medium">
-                [ SERVICES ]
-              </div>
+              <Kicker>Services</Kicker>
               <h1 className="mt-4 text-5xl lg:text-6xl font-black text-black leading-[0.95]">
                 Services tailored to your goals and budget
               </h1>

@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 
 import ChooseUsCard from "../ChooseUsCard";
+import Kicker from "../Kicker";
 import { img1, img2, img3, img4 } from "@/public/choose_us";
 import PixelTrail from "../PixelTrail";
 
@@ -144,17 +145,10 @@ const WhyChooseUs = () => {
           variants={textVariants}
         >
           <motion.div
-            className="inline-block px-4 py-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-full text-sm font-medium mb-6 sm:mb-8 w-fit mx-auto lg:mx-0"
+            className="mb-6 sm:mb-8 w-fit mx-auto lg:mx-0"
             variants={textVariants}
-            whileHover={prefersReducedMotion ? {} : { scale: 1.05 }}
-            transition={{ 
-              type: prefersReducedMotion ? "tween" : "spring", 
-              stiffness: 300, 
-              damping: 20,
-              duration: prefersReducedMotion ? 0.1 : undefined
-            }}
           >
-            [ WHY ODDSTONE ]
+            <Kicker>Why Oddstone</Kicker>
           </motion.div>
           <motion.h3
             className="text-3xl lg:text-6xl font-black text-black mb-4 leading-tight"

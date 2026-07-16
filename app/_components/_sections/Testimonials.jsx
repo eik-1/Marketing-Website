@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Star } from "lucide-react";
 
 import StackingCards, { StackingCardItem } from "../StackingCard";
+import Kicker from "../Kicker";
 
 const Testimonials = () => {
   const [container, setContainer] = useState(null);
@@ -94,8 +95,8 @@ const Testimonials = () => {
             className="flex flex-col justify-center gap-0 mb-10 lg:mb-0 px-4 lg:px-0 text-center lg:text-left"
             variants={titleVariants}
           >
-            <motion.div className="inline-block px-4 py-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-full text-sm font-medium w-fit mb-4 mx-auto lg:mx-0">
-              [ TESTIMONIALS ]
+            <motion.div className="w-fit mb-4 mx-auto lg:mx-0">
+              <Kicker>Testimonials</Kicker>
             </motion.div>
             <h1 className="text-3xl lg:text-6xl font-black text-black leading-tight">
               Read What Our Clients

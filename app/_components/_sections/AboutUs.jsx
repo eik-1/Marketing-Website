@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import Kicker from "../Kicker";
 
 const AboutUs = () => {
   return (
@@ -24,9 +25,9 @@ const AboutUs = () => {
                 viewport={{ once: true }}
                 className="p-8 lg:p-16 relative"
               >
-                <div className="inline-block px-4 py-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-full text-sm font-medium mb-8">
-                  [ ABOUT US ]
-                </div>
+                <Kicker tone="dark" className="mb-8">
+                  About Us
+                </Kicker>
 
                 <h3 className="text-3xl lg:text-5xl font-black text-white mb-4 leading-tight">
                   Your Experience Is
