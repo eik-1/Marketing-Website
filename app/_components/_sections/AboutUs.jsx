@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import Kicker from "../Kicker";
 
 const AboutUs = () => {
   return (
@@ -23,9 +25,9 @@ const AboutUs = () => {
                 viewport={{ once: true }}
                 className="p-8 lg:p-16 relative"
               >
-                <div className="inline-block px-4 py-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-full text-sm font-medium mb-8">
-                  [ ABOUT US ]
-                </div>
+                <Kicker tone="dark" className="mb-8">
+                  About Us
+                </Kicker>
 
                 <h3 className="text-3xl lg:text-5xl font-black text-white mb-4 leading-tight">
                   Your Experience Is
@@ -41,35 +43,17 @@ const AboutUs = () => {
                 </div>
 
                 {/* CTA Button */}
-                <motion.button className="bg-blue-500 hover:bg-blue-600 text-white font-bold px-8 py-4 rounded-full text-lg transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center gap-3 mb-16 cursor-pointer">
+                <Link
+                  href="/get-audit"
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold px-8 py-4 rounded-full text-lg transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center gap-3 mb-10 cursor-pointer"
+                >
                   Let&apos;s Get Started
                   <ArrowRight />
-                </motion.button>
+                </Link>
 
-                <div className="grid grid-cols-2 gap-8">
-                  <div>
-                    <div className="text-4xl lg:text-5xl font-black text-white mb-2">
-                      20+
-                    </div>
-                    <div className="w-12 h-1 bg-blue-500 mb-2"></div>
-                    <div className="text-gray-300 font-medium">
-                      Business
-                      <br />
-                      Peoples
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-4xl lg:text-5xl font-black text-white mb-2">
-                      100%
-                    </div>
-                    <div className="w-12 h-1 bg-blue-500 mb-2"></div>
-                    <div className="text-gray-300 font-medium">
-                      Customer
-                      <br />
-                      Satisfaction
-                    </div>
-                  </div>
-                </div>
+                <p className="text-lg text-gray-300 leading-relaxed max-w-md">
+                  Global expertise across luxury, e-commerce, and high-intent lead generation.
+                </p>
               </motion.div>
 
               {/* Right Side - Main Image */}
@@ -82,8 +66,8 @@ const AboutUs = () => {
               >
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Image
-                    src="/about-img2.jpg"
-                    alt="About Us"
+                    src="/about_us2.jpeg"
+                    alt="The Oddstone team together on a call with a remote teammate"
                     fill
                     className="object-cover"
                   />

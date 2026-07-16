@@ -13,12 +13,7 @@ import HamburgerButton from "./Hamburger";
 const navLinks = [
   { title: "About", href: "/about-us", type: "route" },
   { title: "Services", href: "/services", type: "route" },
-  {
-    title: "How We Work",
-    href: "/#how-we-work",
-    type: "hash",
-    sectionId: "how-we-work",
-  },
+  { title: "Case Studies", href: "/case-studies", type: "route" },
   {
     title: "Testimonials",
     href: "/#testimonials",

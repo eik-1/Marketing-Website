@@ -12,6 +12,7 @@ import {
   Globe,
   Target,
 } from "lucide-react";
+import Kicker from "@/app/_components/Kicker";
 import Navbar from "@/app/_components/Navbar";
 import Footer from "@/app/_components/Footer";
 
@@ -97,13 +98,7 @@ function GetAuditContent() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="lg:col-span-2"
           >
-            <motion.div
-              className="inline-block px-4 py-2 bg-blue-500/10 border border-blue-500/20 text-blue-500 rounded-full text-sm font-medium w-fit"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              [ GET IN TOUCH ]
-            </motion.div>
+            <Kicker>Get in Touch</Kicker>
             <div className="mt-4">
               <h1 className="text-5xl lg:text-5xl font-black text-black leading-[0.95]">
                 Hey there!

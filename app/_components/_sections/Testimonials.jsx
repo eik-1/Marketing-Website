@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Star } from "lucide-react";
 
-import { Avatar, AvatarFallback, AvatarImage } from "../Avatar";
 import StackingCards, { StackingCardItem } from "../StackingCard";
+import Kicker from "../Kicker";
 
 const Testimonials = () => {
   const [container, setContainer] = useState(null);
@@ -22,8 +22,6 @@ const Testimonials = () => {
       name: "Simon Mitchell",
       company: "Green Laurels",
       rating: 5,
-      avatar:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
       bgColor: "bg-white",
     },
     {
@@ -33,8 +31,6 @@ const Testimonials = () => {
       name: "Emma Carter",
       company: "Colets Health & Fitness",
       rating: 5,
-      avatar:
-        "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
       bgColor: "bg-blue-200",
     },
     {
@@ -44,8 +40,6 @@ const Testimonials = () => {
       name: "Helen Locke",
       company: "Paradise Boutique",
       rating: 4,
-      avatar:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
       bgColor: "bg-white",
     },
     {
@@ -55,8 +49,6 @@ const Testimonials = () => {
       name: "Thomas Grant",
       company: "Balance Physio & Wellness",
       rating: 5,
-      avatar:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
       bgColor: "bg-blue-200",
     },
   ];
@@ -103,8 +95,8 @@ const Testimonials = () => {
             className="flex flex-col justify-center gap-0 mb-10 lg:mb-0 px-4 lg:px-0 text-center lg:text-left"
             variants={titleVariants}
           >
-            <motion.div className="inline-block px-4 py-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-full text-sm font-medium w-fit mb-4 mx-auto lg:mx-0">
-              [ TESTIMONIALS ]
+            <motion.div className="w-fit mb-4 mx-auto lg:mx-0">
+              <Kicker>Testimonials</Kicker>
             </motion.div>
             <h1 className="text-3xl lg:text-6xl font-black text-black leading-tight">
               Read What Our Clients
@@ -117,54 +109,28 @@ const Testimonials = () => {
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 w-full">
             {/* Left Side */}
             <div className="bg-blue-500 rounded-3xl mt-0 lg:mt-14 p-6 lg:p-8 xl:p-10 text-white max-w-full lg:max-w-xs w-full h-[18rem] lg:h-[20rem] shadow-xl">
-              {/* Profile Images Row */}
-              <div className="flex items-center mb-8 lg:mb-14">
-                <div className="flex -space-x-3">
-                  <Avatar className="w-12 h-12 border-2 border-white">
-                    <AvatarImage
-                      src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face"
-                      alt="Client 1"
-                      className="object-cover"
-                    />
-                    <AvatarFallback className="bg-blue-600 text-white font-semibold">
-                      SM
-                    </AvatarFallback>
-                  </Avatar>
-                  <Avatar className="w-12 h-12 border-2 border-white">
-                    <AvatarImage
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
-                      alt="Client 2"
-                      className="object-cover"
-                    />
-                    <AvatarFallback className="bg-blue-600 text-white font-semibold">
-                      EC
-                    </AvatarFallback>
-                  </Avatar>
-                  <Avatar className="w-12 h-12 border-2 border-white">
-                    <AvatarImage
-                      src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
-                      alt="Client 3"
-                      className="object-cover"
-                    />
-                    <AvatarFallback className="bg-blue-600 text-white font-semibold">
-                      HL
-                    </AvatarFallback>
-                  </Avatar>
-                </div>
-                <div className="ml-4">
-                  <div className="text-white font-bold text-lg">100+</div>
-                  <div className="text-blue-100 text-sm">Client Reviews</div>
-                </div>
+              {/* Reviews Count */}
+              <div className="mb-8 lg:mb-10">
+                <div className="text-white font-bold text-lg">100+</div>
+                <div className="text-blue-100 text-sm">Client Reviews</div>
               </div>
 
               {/* Rating */}
               <div className="mb-4">
                 <div className="text-6xl font-black text-white mb-2">4.5</div>
+                <div className="flex gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`w-5 h-5 ${i < 4 ? "text-white fill-white" : "text-white/40 fill-white/40"}`}
+                    />
+                  ))}
+                </div>
               </div>
 
               {/* Description */}
-              <p className="text-blue-50 text-base leading-relaxed">
-                Customers are Satisfied with our Marketing Services.
+              <p className="text-blue-50 text-base leading-relaxed mt-6">
+                Real feedback from the businesses we work with.
               </p>
             </div>
 
@@ -229,19 +195,6 @@ const Testimonials = () => {
 
                       {/* Author */}
                       <div className="flex items-center">
-                        <Avatar className="w-12 lg:w-14 h-12 lg:h-14 mr-3 lg:mr-4 border-2 border-white/20">
-                          <AvatarImage
-                            src={testimonial.avatar}
-                            alt={testimonial.name}
-                            className="object-cover"
-                          />
-                          <AvatarFallback className="bg-white/20 text-white font-semibold">
-                            {testimonial.name
-                              .split(" ")
-                              .map((n) => n[0])
-                              .join("")}
-                          </AvatarFallback>
-                        </Avatar>
                         <div>
                           <div className="font-semibold text-base lg:text-lg">
                             {testimonial.name}

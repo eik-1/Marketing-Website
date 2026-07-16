@@ -3,16 +3,16 @@ import "./globals.css";
 
 export const metadata = {
   title: {
-    default: "Oddstone Marketing | SEO, PPC & Social Media Agency",
+    default: "Oddstone Marketing | SEO, Brand & Performance Marketing Agency",
     template: "%s | Oddstone",
   },
   description:
-    "Oddstone Marketing helps small businesses grow with SEO, PPC, social media, and automation. Friendly, collaborative, and focused on results.",
+    "Oddstone Marketing helps brands grow with SEO, brand & performance marketing, and social media. Global expertise across luxury, e-commerce, and high-intent lead generation.",
   metadataBase: new URL("https://oddstone.co.uk"),
   openGraph: {
-    title: "Oddstone Marketing | SEO, PPC & Social Media Agency",
+    title: "Oddstone Marketing | SEO, Brand & Performance Marketing Agency",
     description:
-      "Oddstone Marketing helps small businesses grow with SEO, PPC, social media, and automation. Friendly, collaborative, and focused on results.",
+      "Oddstone Marketing helps brands grow with SEO, brand & performance marketing, and social media. Global expertise across luxury, e-commerce, and high-intent lead generation.",
     url: "/",
     siteName: "Oddstone",
     images: [
@@ -23,9 +23,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Oddstone Marketing | SEO, PPC & Social Media Agency",
+    title: "Oddstone Marketing | SEO, Brand & Performance Marketing Agency",
     description:
-      "Oddstone Marketing helps small businesses grow with SEO, PPC, social media, and automation. Friendly, collaborative, and focused on results.",
+      "Oddstone Marketing helps brands grow with SEO, brand & performance marketing, and social media. Global expertise across luxury, e-commerce, and high-intent lead generation.",
     images: ["/og-pic.webp"],
   },
   alternates: { canonical: "/" },
@@ -49,7 +49,6 @@ export default function RootLayout({ children }) {
         <meta name="format-detection" content="telephone=no" />
         {/* Preconnects to external media hosts */}
         <link rel="preconnect" href="https://res.cloudinary.com" />
-        <link rel="preconnect" href="https://images.unsplash.com" />
       </head>
       <body
         className={`${satoshi.variable} font-sans antialiased h-full flex flex-col`}

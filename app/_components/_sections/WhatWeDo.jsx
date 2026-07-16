@@ -4,20 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { services as servicesData } from "@/app/services/_data";
-import {
-  CheckCircle2,
-  ChevronLeft,
-  ChevronRight,
-  ArrowRight,
-} from "lucide-react";
-
-// Service images mapping with proper fallbacks
-const serviceImages = [
-  "/services/service-img1.png",
-  "/services/service-img2.png",
-  "/services/service-img3.jpg",
-  "/services/service-img4.jpg",
-];
+import { Check, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import Kicker from "../Kicker";
 
 const WhatWeDo = () => {
   // Check for reduced motion preference
@@ -27,13 +15,13 @@ const WhatWeDo = () => {
 
   const items = useMemo(
     () =>
-      servicesData.map((s, index) => ({
+      servicesData.map((s) => ({
         id: s.id,
         title: s.title,
         kicker: s.heroKicker,
         description: s.shortDescription,
         highlights: s.highlights.slice(0, 3),
-        image: serviceImages[index % serviceImages.length],
+        image: s.image,
       })),
     []
   );
@@ -151,7 +139,7 @@ const WhatWeDo = () => {
                   >
                     {/* Modern Card Design (cleaner, lighter) */}
                     <div className="relative overflow-hidden rounded-2xl bg-white border border-gray-200 shadow-sm transition-shadow duration-300 hover:shadow-lg h-full flex flex-col">
-                      {/* Image Header with Gradient Overlay */}
+                      {/* Image Header */}
                       <div className="relative h-40 sm:h-44 lg:h-48 overflow-hidden rounded-t-2xl">
                         <Image
                           src={service.image}
@@ -161,24 +149,13 @@ const WhatWeDo = () => {
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           priority={false}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-b from-blue-600/30 to-blue-600/0"></div>
-
-                        {/* Floating icon removed as requested */}
-
-                        {/* Subtle divider at bottom of image */}
-                        <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white to-transparent"></div>
                       </div>
 
                       {/* Card Content */}
                       <div className="relative p-6 sm:p-8 flex flex-col grow">
                         {/* Header */}
                         <div className="mb-6">
-                          <div className="flex items-center gap-2 mb-3">
-                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                            <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">
-                              {service.kicker}
-                            </span>
-                          </div>
+                          <Kicker className="mb-3">{service.kicker}</Kicker>
                           <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
                             {service.title}
                           </h3>
@@ -188,33 +165,31 @@ const WhatWeDo = () => {
                         </div>
 
                         {/* Features List */}
-                        <div className="mb-8">
-                          <div className="grid gap-3">
-                            {service.highlights.map((highlight, idx) => (
-                              <div
-                                key={highlight}
-                                className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors duration-300 group/item"
-                              >
-                                <div className="flex-shrink-0 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                                  <CheckCircle2 className="w-4 h-4 text-white" />
-                                </div>
-                                <span className="text-sm font-medium text-gray-700 group-hover/item:text-blue-700 transition-colors duration-300">
-                                  {highlight}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
+                        <div className="mb-8 border-t border-gray-100">
+                          {service.highlights.map((highlight) => (
+                            <div
+                              key={highlight}
+                              className="flex items-center gap-3 py-3 border-b border-gray-100"
+                            >
+                              <Check
+                                className="w-4 h-4 text-blue-600 shrink-0"
+                                strokeWidth={2.5}
+                                aria-hidden="true"
+                              />
+                              <span className="text-sm font-medium text-gray-700">
+                                {highlight}
+                              </span>
+                            </div>
+                          ))}
                         </div>
 
-                        {/* CTA Button */}
+                        {/* CTA */}
                         <Link
                           href={`/services/${service.id}`}
-                          className="relative w-full inline-flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-colors duration-300 shadow-sm hover:shadow-md mt-auto"
+                          className="inline-flex items-center gap-2 text-blue-600 font-semibold mt-auto hover:gap-3 transition-all"
                         >
-                          <span className="text-sm sm:text-base">
-                            Learn More
-                          </span>
-                          <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                          Learn more
+                          <ArrowRight className="w-4 h-4" />
                         </Link>
                       </div>
                     </div>

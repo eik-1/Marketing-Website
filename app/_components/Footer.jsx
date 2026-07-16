@@ -1,3 +1,5 @@
+import { contact } from "@/lib/contact";
+
 const Footer = () => {
   return (
     <div className="sticky bottom-0 left-0 w-full bg-blue-500">
@@ -18,20 +20,26 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Contact Information */}
+          {/* Contact */}
           <div className="w-full sm:max-w-sm md:w-auto order-1 md:order-2">
             <h3 className="font-semibold mb-3 sm:mb-4 text-base sm:text-lg">
-              Office
+              Contact
             </h3>
             <div className="space-y-2 opacity-90 text-sm sm:text-base">
-              <p>contact@oddstone.co.uk</p>
-              <p>+1 (555) 123-4567</p>
-              <p className="max-w-[14rem] sm:max-w-[16rem]">
-                123 Marketing Street
-                <br />
-                Digital District
-                <br />
-                Innovation City, IC 12345
+              <p>
+                <a href={`mailto:${contact.email}`} className="hover:underline">
+                  {contact.email}
+                </a>
+              </p>
+              <p>
+                <a
+                  href={contact.whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  WhatsApp: {contact.whatsapp}
+                </a>
               </p>
             </div>
           </div>

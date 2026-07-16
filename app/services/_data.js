@@ -18,19 +18,19 @@ export const services = [
   },
   {
     id: "ppc",
-    title: "Pay-Per-Click (PPC) Advertising",
+    title: "Brand & Performance Marketing",
     shortDescription:
-      "Instant visibility through smart, performance-driven ad campaigns across Google, Meta and more.",
+      "Strategic brand building combined with performance-driven campaigns across Google, Meta and more.",
     image: "/services/service-img4.jpg",
     icon: "Sparkle",
-    heroKicker: "PPC",
+    heroKicker: "Brand & Performance",
     heroSubtitle:
-      "Efficient acquisition with clear targets, creative testing and rigorous optimisation.",
+      "Where brand thinking meets performance execution — driving awareness and acquisition together.",
     highlights: [
-      "Full-funnel account structure",
-      "Compelling ad creative and copy",
-      "Bid strategies aligned to goals",
-      "Conversion tracking and LTV",
+      "Full-funnel campaign strategy",
+      "Brand-led creative development",
+      "Performance optimisation",
+      "Cross-channel attribution",
     ],
   },
   {

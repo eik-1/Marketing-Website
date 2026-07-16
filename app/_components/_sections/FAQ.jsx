@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     q: "Which channels do you specialise in?",
-    a: "SEO, PPC, social ads, and marketing automation. We’ll combine the right mix for your objectives.",
+    a: "SEO, brand & performance marketing, social ads, and marketing automation. We’ll combine the right mix for your objectives.",
   },
   {
     q: "Can you audit my current setup first?",

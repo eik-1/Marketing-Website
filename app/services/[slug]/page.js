@@ -7,24 +7,26 @@ export async function generateStaticParams() {
   return getAllServiceIds().map((id) => ({ slug: id }));
 }
 
-export function generateMetadata({ params }) {
-  const svc = getServiceBySlug(params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const svc = getServiceBySlug(slug);
   if (!svc) return { title: "Service | Oddstone" };
   return {
     title: `${svc.title} | Oddstone`,
     description: svc.shortDescription,
-    alternates: { canonical: `/services/${params.slug}` },
+    alternates: { canonical: `/services/${slug}` },
     openGraph: {
       title: `${svc.title} | Oddstone`,
       description: svc.shortDescription,
-      url: `/services/${params.slug}`,
+      url: `/services/${slug}`,
       type: "article",
     },
   };
 }
 
-export default function ServiceDetailPage({ params }) {
-  const svc = getServiceBySlug(params.slug);
+export default async function ServiceDetailPage({ params }) {
+  const { slug } = await params;
+  const svc = getServiceBySlug(slug);
   if (!svc) {
     return (
       <main className="min-h-[60vh] flex items-center justify-center px-6 py-24">
@@ -70,7 +72,7 @@ export default function ServiceDetailPage({ params }) {
                   "@type": "ListItem",
                   position: 3,
                   name: svc.title,
-                  item: `/services/${params.slug}`,
+                  item: `/services/${slug}`,
                 },
               ],
             }),

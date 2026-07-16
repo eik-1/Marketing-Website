@@ -3,26 +3,17 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-import {
-  SearchCheck,
-  Sparkle,
-  BadgeCheck,
-  MonitorSmartphone,
-} from "lucide-react";
-
-const iconMap = { SearchCheck, Sparkle, BadgeCheck, MonitorSmartphone };
+import Kicker from "@/app/_components/Kicker";
 
 export default function ServiceDetailContent({ service }) {
   const {
     title,
     shortDescription,
     image,
-    icon,
     heroKicker,
     heroSubtitle,
     highlights,
   } = service;
-  const Icon = iconMap[icon] || SearchCheck;
 
   return (
     <>
@@ -37,9 +28,7 @@ export default function ServiceDetailContent({ service }) {
             className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"
           >
             <div className="lg:col-span-6">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 text-blue-600 rounded-full text-sm font-medium">
-                <Icon className="w-4 h-4" /> {heroKicker}
-              </div>
+              <Kicker>{heroKicker}</Kicker>
               <h1 className="mt-4 text-4xl md:text-6xl font-black text-black leading-[0.95]">
                 {title}
               </h1>
