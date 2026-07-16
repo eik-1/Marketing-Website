@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Star } from "lucide-react";
 
-import { Avatar, AvatarFallback, AvatarImage } from "../Avatar";
 import StackingCards, { StackingCardItem } from "../StackingCard";
 
 const Testimonials = () => {
@@ -117,53 +116,27 @@ const Testimonials = () => {
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 w-full">
             {/* Left Side */}
             <div className="bg-blue-500 rounded-3xl mt-0 lg:mt-14 p-6 lg:p-8 xl:p-10 text-white max-w-full lg:max-w-xs w-full h-[18rem] lg:h-[20rem] shadow-xl">
-              {/* Profile Images Row */}
-              <div className="flex items-center mb-8 lg:mb-14">
-                <div className="flex -space-x-3">
-                  <Avatar className="w-12 h-12 border-2 border-white">
-                    <AvatarImage
-                      src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face"
-                      alt="Client 1"
-                      className="object-cover"
-                    />
-                    <AvatarFallback className="bg-blue-600 text-white font-semibold">
-                      SM
-                    </AvatarFallback>
-                  </Avatar>
-                  <Avatar className="w-12 h-12 border-2 border-white">
-                    <AvatarImage
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
-                      alt="Client 2"
-                      className="object-cover"
-                    />
-                    <AvatarFallback className="bg-blue-600 text-white font-semibold">
-                      EC
-                    </AvatarFallback>
-                  </Avatar>
-                  <Avatar className="w-12 h-12 border-2 border-white">
-                    <AvatarImage
-                      src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
-                      alt="Client 3"
-                      className="object-cover"
-                    />
-                    <AvatarFallback className="bg-blue-600 text-white font-semibold">
-                      HL
-                    </AvatarFallback>
-                  </Avatar>
-                </div>
-                <div className="ml-4">
-                  <div className="text-white font-bold text-lg">100+</div>
-                  <div className="text-blue-100 text-sm">Client Reviews</div>
-                </div>
+              {/* Reviews Count */}
+              <div className="mb-8 lg:mb-10">
+                <div className="text-white font-bold text-lg">100+</div>
+                <div className="text-blue-100 text-sm">Client Reviews</div>
               </div>
 
               {/* Rating */}
               <div className="mb-4">
                 <div className="text-6xl font-black text-white mb-2">4.5</div>
+                <div className="flex gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`w-5 h-5 ${i < 4 ? "text-white fill-white" : "text-white/40 fill-white/40"}`}
+                    />
+                  ))}
+                </div>
               </div>
 
               {/* Description */}
-              <p className="text-blue-50 text-base leading-relaxed">
+              <p className="text-blue-50 text-base leading-relaxed mt-6">
                 Customers are Satisfied with our Marketing Services.
               </p>
             </div>
@@ -229,19 +202,6 @@ const Testimonials = () => {
 
                       {/* Author */}
                       <div className="flex items-center">
-                        <Avatar className="w-12 lg:w-14 h-12 lg:h-14 mr-3 lg:mr-4 border-2 border-white/20">
-                          <AvatarImage
-                            src={testimonial.avatar}
-                            alt={testimonial.name}
-                            className="object-cover"
-                          />
-                          <AvatarFallback className="bg-white/20 text-white font-semibold">
-                            {testimonial.name
-                              .split(" ")
-                              .map((n) => n[0])
-                              .join("")}
-                          </AvatarFallback>
-                        </Avatar>
                         <div>
                           <div className="font-semibold text-base lg:text-lg">
                             {testimonial.name}
