@@ -87,18 +87,11 @@ export default function ServicesPage() {
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         priority={false}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-b from-blue-600/30 to-blue-600/0"></div>
-                      <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white to-transparent"></div>
                     </div>
 
                     <div className="relative p-6 sm:p-8 flex flex-col grow">
                       <div className="mb-6">
-                        <div className="flex items-center gap-2 mb-3">
-                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                          <span className="text-sm font-semibold text-blue-600 uppercase tracking-wide">
-                            {service.kicker}
-                          </span>
-                        </div>
+                        <Kicker className="mb-3">{service.kicker}</Kicker>
                         <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
                           {service.title}
                         </h3>
@@ -127,10 +120,10 @@ export default function ServicesPage() {
 
                       <Link
                         href={`/services/${service.id}`}
-                        className="relative w-full inline-flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-colors duration-300 shadow-sm hover:shadow-md mt-auto"
+                        className="inline-flex items-center gap-2 text-blue-600 font-semibold mt-auto hover:gap-3 transition-all"
                       >
-                        <span className="text-sm sm:text-base">Learn More</span>
-                        <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                        Learn more
+                        <ArrowRight className="w-4 h-4" />
                       </Link>
                     </div>
                   </div>
