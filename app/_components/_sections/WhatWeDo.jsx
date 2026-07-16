@@ -4,12 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { services as servicesData } from "@/app/services/_data";
-import {
-  CheckCircle2,
-  ChevronLeft,
-  ChevronRight,
-  ArrowRight,
-} from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 
 const WhatWeDo = () => {
   // Check for reduced motion preference
@@ -180,22 +175,22 @@ const WhatWeDo = () => {
                         </div>
 
                         {/* Features List */}
-                        <div className="mb-8">
-                          <div className="grid gap-3">
-                            {service.highlights.map((highlight, idx) => (
-                              <div
-                                key={highlight}
-                                className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors duration-300 group/item"
-                              >
-                                <div className="flex-shrink-0 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                                  <CheckCircle2 className="w-4 h-4 text-white" />
-                                </div>
-                                <span className="text-sm font-medium text-gray-700 group-hover/item:text-blue-700 transition-colors duration-300">
-                                  {highlight}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
+                        <div className="mb-8 border-t border-gray-100">
+                          {service.highlights.map((highlight) => (
+                            <div
+                              key={highlight}
+                              className="flex items-center gap-3 py-3 border-b border-gray-100"
+                            >
+                              <Check
+                                className="w-4 h-4 text-blue-600 shrink-0"
+                                strokeWidth={2.5}
+                                aria-hidden="true"
+                              />
+                              <span className="text-sm font-medium text-gray-700">
+                                {highlight}
+                              </span>
+                            </div>
+                          ))}
                         </div>
 
                         {/* CTA Button */}

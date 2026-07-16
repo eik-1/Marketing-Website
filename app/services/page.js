@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { services as servicesData } from "./_data";
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 import FAQ from "@/app/_components/_sections/FAQ";
 import Kicker from "@/app/_components/Kicker";
 
@@ -107,22 +107,22 @@ export default function ServicesPage() {
                         </p>
                       </div>
 
-                      <div className="mb-8">
-                        <div className="grid gap-3">
-                          {service.highlights.map((highlight) => (
-                            <div
-                              key={highlight}
-                              className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors duration-300"
-                            >
-                              <div className="flex-shrink-0 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                                <CheckCircle2 className="w-4 h-4 text-white" />
-                              </div>
-                              <span className="text-sm font-medium text-gray-700">
-                                {highlight}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
+                      <div className="mb-8 border-t border-gray-100">
+                        {service.highlights.map((highlight) => (
+                          <div
+                            key={highlight}
+                            className="flex items-center gap-3 py-3 border-b border-gray-100"
+                          >
+                            <Check
+                              className="w-4 h-4 text-blue-600 shrink-0"
+                              strokeWidth={2.5}
+                              aria-hidden="true"
+                            />
+                            <span className="text-sm font-medium text-gray-700">
+                              {highlight}
+                            </span>
+                          </div>
+                        ))}
                       </div>
 
                       <Link
